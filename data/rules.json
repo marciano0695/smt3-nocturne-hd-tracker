@@ -1,0 +1,26 @@
+{
+	"_note": "Core mechanics the scheduler depends on. Edit to fix mistakes. Assumptions show an 'unverified' tag in the app until you confirm them there, or set \"verified\": true here.",
+	"maxLevel": 99,
+	"maxSkills": 8,
+	"statPointsPerLevel": 1,
+	"statCap": 40,
+	"assumptions": [
+		{ "id": "stat-cap", "text": "Each stat caps at 40.", "verified": true },
+		{
+			"id": "stat-points-per-level",
+			"text": "Each level gives 1 stat point to spend.",
+			"verified": true
+		},
+		{ "id": "max-level", "text": "The maximum level is 99.", "verified": true },
+		{
+			"id": "declined-skill-gone",
+			"text": "A declined skill still counts as passed: the Magatama moves on to its next skill and the declined skill is gone for good.",
+			"verified": true
+		},
+		{
+			"id": "new-game-start",
+			"text": "A new game starts with 2 in every stat and Marogareh as the only Magatama.",
+			"verified": true
+		}
+	]
+}

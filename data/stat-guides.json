@@ -1,0 +1,15 @@
+{
+  "_note": "Recommended stat curves the Build planner can follow. The tracker simulates each guide from level 1 ('start', the new-game stats) to get the ideal stats at every level, then gives each level-up's point to the stat furthest behind that curve. A phase lasts until 'untilLevel' (null = to the end); its pattern repeats, and stats that reached their target are skipped.",
+  "guides": [
+    {
+      "id": "physical-2-2-1",
+      "name": "Physical: 2/2/1 to level 30, then Strength",
+      "source": "User-provided guide: physical builds put points in Strength, Vitality and Agility; a balanced 2/2/1 spread with Agility on levels that are multiples of 5 keeps you safe and accurate until stats hit around 30.",
+      "start": { "STR": 2, "MAG": 2, "VIT": 2, "AGI": 2, "LUC": 2 },
+      "phases": [
+        { "untilLevel": 30, "pattern": ["STR", "VIT", "STR", "AGI", "VIT"] },
+        { "untilLevel": null, "pattern": ["STR", "STR", "STR", "VIT"] }
+      ]
+    }
+  ]
+}

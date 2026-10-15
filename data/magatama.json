@@ -1,0 +1,168 @@
+{
+  "_source": "User-provided Magatama skill table (SMT III Nocturne HD Remaster). Skills within each Magatama are listed in learning order. alignment and obtain come from a user-provided location list and are shown as unverified until confirmed in the app.",
+  "magatama": [
+    { "name": "Marogareh", "alignment": "light", "obtain": "You start with it.", "skills": [
+      { "name": "Lunge", "level": 3, "cost": "10% HP", "type": "phys", "effect": "Low physical damage to one foe. Medium critical rate." },
+      { "name": "Analyze", "level": 4, "cost": "2 MP", "type": "support", "effect": "Reveals one enemy's HP, MP, resistances and skills. Ineffective on bosses." },
+      { "name": "Life Bonus", "level": 6, "cost": "Passive", "type": "passive", "effect": "Max HP +10%." },
+      { "name": "Berserk", "level": 10, "cost": "13% HP", "type": "phys", "effect": "Low physical damage to random foes." },
+      { "name": "Counter", "level": 20, "cost": "Passive", "type": "passive", "effect": "50% chance to counter physical attacks with weak physical damage." },
+      { "name": "Pierce", "level": null, "unlock": "labyrinth_complete", "cost": "Passive", "type": "passive", "effect": "Physical and phys-almighty attacks bypass most resistances except repel. Requires completing the Labyrinth of Amala." }
+    ]},
+    { "name": "Wadatsumi", "alignment": "neutral", "obtain": "Defeat Forneus at Shinjuku Medical Center.", "skills": [
+      { "name": "Ice Breath", "level": 7, "cost": "9 MP", "type": "ice", "effect": "Low ice damage and 17% freeze to random foes." },
+      { "name": "Mana Bonus", "level": 11, "cost": "Passive", "type": "passive", "effect": "Max MP +10%." },
+      { "name": "Ice Boost", "level": 15, "cost": "Passive", "type": "passive", "effect": "Ice damage x1.5." },
+      { "name": "Fog Breath", "level": 21, "cost": "30 MP", "type": "support", "effect": "Agility -2 levels, all foes." },
+      { "name": "Anti-Ice", "level": 24, "cost": "Passive", "type": "passive", "effect": "Resist ice." }
+    ]},
+    { "name": "Ankh", "alignment": "light", "obtain": "Release the Pixie at Yoyogi Park, or buy it at the Great Underpass of Ginza Junk Shop.", "skills": [
+      { "name": "Dia", "level": 5, "cost": "3 MP", "type": "heal", "effect": "Moderately restores one ally's HP." },
+      { "name": "Fast Retreat", "level": 12, "cost": "Passive", "type": "passive", "effect": "Retreat chance +50%." },
+      { "name": "Media", "level": 19, "cost": "12 MP", "type": "heal", "effect": "Moderately restores party's HP." }
+    ]},
+    { "name": "Iyomante", "alignment": "light", "obtain": "Buy at the Shibuya Junk Shop.", "skills": [
+      { "name": "Tarunda", "level": 10, "cost": "20 MP", "type": "support", "effect": "Physical and magical power -1 level, all foes." },
+      { "name": "Sukunda", "level": 13, "cost": "12 MP", "type": "support", "effect": "Agility -1 level, all foes." },
+      { "name": "Rakunda", "level": 16, "cost": "12 MP", "type": "support", "effect": "Defense -1 level, all foes." },
+      { "name": "Life Aid", "level": 36, "cost": "Passive", "type": "passive", "effect": "Restores HP moderately after battle (active combatant only)." }
+    ]},
+    { "name": "Shiranui", "alignment": "dark", "obtain": "Buy at the Shibuya Junk Shop.", "skills": [
+      { "name": "Fire Breath", "level": 9, "cost": "9 MP", "type": "fire", "effect": "Low fire damage to random foes." },
+      { "name": "Fire Boost", "level": 14, "cost": "Passive", "type": "passive", "effect": "Fire damage x1.5." },
+      { "name": "Taunt", "level": 19, "cost": "20 MP", "type": "support", "effect": "Foes' physical power +2 levels and defense -2 levels." },
+      { "name": "Anti-Fire", "level": 23, "cost": "Passive", "type": "passive", "effect": "Resist fire." }
+    ]},
+    { "name": "Hifumi", "alignment": "neutral", "obtain": "Buy at the Great Underpass of Ginza Junk Shop.", "skills": [
+      { "name": "Tornado", "level": 17, "cost": "25 MP", "type": "force", "effect": "High force damage to random foes." },
+      { "name": "Force Boost", "level": 22, "cost": "Passive", "type": "passive", "effect": "Force damage x1.5." },
+      { "name": "War Cry", "level": 24, "cost": "40 MP", "type": "support", "effect": "Physical power -2 levels, all foes." },
+      { "name": "Anti-Force", "level": 27, "cost": "Passive", "type": "passive", "effect": "Resist force." },
+      { "name": "Void Force", "level": 40, "cost": "Passive", "type": "passive", "effect": "Null force." }
+    ]},
+    { "name": "Kamudo", "alignment": "neutral", "obtain": "Buy at the Great Underpass of Ginza Junk Shop.", "skills": [
+      { "name": "Heat Wave", "level": 18, "cost": "16% HP", "type": "phys", "effect": "Low physical damage to all foes. High accuracy, medium crit. Power scales with max HP." },
+      { "name": "Focus", "level": 23, "cost": "5 MP", "type": "support", "effect": "Next physical attack damage x2.5." },
+      { "name": "Mind's Eye", "level": 25, "cost": "Passive", "type": "passive", "effect": "Back-ambush chance reduced by one third." },
+      { "name": "Might", "level": 29, "cost": "Passive", "type": "passive", "effect": "Triples critical rate of basic attack." }
+    ]},
+    { "name": "Narukami", "alignment": "light", "obtain": "Defeat Thor at Mantra HQ.", "skills": [
+      { "name": "Shock", "level": 21, "cost": "9 MP", "type": "elec", "effect": "Low electric damage and 17% shock to random foes." },
+      { "name": "Elec Boost", "level": 26, "cost": "Passive", "type": "passive", "effect": "Electric damage x1.5." },
+      { "name": "Anti-Elec", "level": 30, "cost": "Passive", "type": "passive", "effect": "Resist electric." },
+      { "name": "Void Elec", "level": 44, "cost": "Passive", "type": "passive", "effect": "Null electric." }
+    ]},
+    { "name": "Anathema", "alignment": "dark", "obtain": "Defeat Ose at the Assembly of Nihilo.", "skills": [
+      { "name": "Mana Drain", "level": 28, "cost": "2 MP", "type": "almighty", "effect": "Drains a small amount of MP from one foe." },
+      { "name": "Anti-Dark", "level": 32, "cost": "Passive", "type": "passive", "effect": "Resist dark." },
+      { "name": "Mamudo", "level": 35, "cost": "15 MP", "type": "dark", "effect": "20% instant kill, all foes." },
+      { "name": "Evil Gaze", "level": 38, "cost": "8 MP", "type": "dark", "effect": "Chance to drop one foe's HP to 1." },
+      { "name": "Mamudoon", "level": 49, "cost": "25 MP", "type": "dark", "effect": "30% instant kill, all foes." }
+    ]},
+    { "name": "Miasma", "alignment": "dark", "obtain": "Defeat Mizuchi at Kabukicho Prison.", "skills": [
+      { "name": "Wild Dance", "level": 31, "cost": "18 MP", "type": "mind", "effect": "65% panic, all foes." },
+      { "name": "Void Ice", "level": 45, "cost": "Passive", "type": "passive", "effect": "Null ice." },
+      { "name": "Glacial Blast", "level": 52, "cost": "25 MP", "type": "ice", "effect": "High ice damage and 15% freeze to random foes." },
+      { "name": "Ice Drain", "level": 60, "cost": "Passive", "type": "passive", "effect": "Drain ice." }
+    ]},
+    { "name": "Nirvana", "alignment": "light", "obtain": "Buy at the Asakusa Junk Shop.", "skills": [
+      { "name": "Violet Flash", "level": 32, "cost": "10 MP", "type": "light", "effect": "Medium light damage to one foe." },
+      { "name": "Anti-Light", "level": 33, "cost": "Passive", "type": "passive", "effect": "Resist light." },
+      { "name": "Divine Shot", "level": 41, "cost": "13% HP", "type": "phys", "effect": "High physical damage to one foe. Medium crit." },
+      { "name": "Void Light", "level": 56, "cost": "Passive", "type": "passive", "effect": "Null light." }
+    ]},
+    { "name": "Gehenna", "alignment": "neutral", "obtain": "Buy at the Asakusa Junk Shop.", "skills": [
+      { "name": "Hellfire", "level": 33, "cost": "20 MP", "type": "fire", "effect": "Medium fire damage to random foes." },
+      { "name": "Void Fire", "level": 42, "cost": "Passive", "type": "passive", "effect": "Null fire." },
+      { "name": "Mana Gain", "level": 45, "cost": "Passive", "type": "passive", "effect": "Max MP +20%." },
+      { "name": "Fire Drain", "level": 60, "cost": "Passive", "type": "passive", "effect": "Drain fire." },
+      { "name": "Magma Axis", "level": 65, "cost": "30% HP", "type": "fire", "effect": "Massive fire damage to one foe." }
+    ]},
+    { "name": "Murakumo", "alignment": "neutral", "obtain": "Defeat the Four Oni in the Ikebukuro Tunnel (Ongyo-Ki last); it is in a Cache Cube there.", "skills": [
+      { "name": "Void Mind", "level": 34, "cost": "Passive", "type": "passive", "effect": "Null mind ailments." },
+      { "name": "Void Nerve", "level": 37, "cost": "Passive", "type": "passive", "effect": "Null nerve ailments." },
+      { "name": "Chaos Blade", "level": 40, "cost": "32% HP", "type": "phys", "effect": "Low physical damage and 30% panic to random foes. High accuracy. Power scales with max HP." },
+      { "name": "Void Curse", "level": 42, "cost": "Passive", "type": "passive", "effect": "Null curse ailments." }
+    ]},
+    { "name": "Geis", "alignment": "dark", "obtain": "Clear all 20 stages of the Puzzle Boy mini-game in Asakusa (side quest).", "skills": [
+      { "name": "Diarama", "level": 37, "cost": "7 MP", "type": "heal", "effect": "Greatly restores one ally's HP." },
+      { "name": "Life Refill", "level": 39, "cost": "Passive", "type": "passive", "effect": "Restores HP lightly per step (active combatant only)." },
+      { "name": "Tetraja", "level": 41, "cost": "15 MP", "type": "support", "effect": "Party shield that blocks one light or dark attack." },
+      { "name": "Mediarama", "level": 44, "cost": "20 MP", "type": "heal", "effect": "Greatly restores party's HP." },
+      { "name": "Diarahan", "level": 47, "cost": "15 MP", "type": "heal", "effect": "Fully restores one ally's HP." },
+      { "name": "Mana Refill", "level": 51, "cost": "Passive", "type": "passive", "effect": "Restores MP lightly per step (active combatant only)." }
+    ]},
+    { "name": "Djed", "alignment": "dark", "obtain": "Automatic after defeating the Moirae Sisters at the Obelisk.", "skills": [
+      { "name": "Tarukaja", "level": 42, "cost": "12 MP", "type": "support", "effect": "Physical power +1 level, all allies." },
+      { "name": "Sukukaja", "level": 43, "cost": "12 MP", "type": "support", "effect": "Agility +1 level, all allies." },
+      { "name": "Makakaja", "level": 44, "cost": "12 MP", "type": "support", "effect": "Magic power +1 level, all allies." },
+      { "name": "Rakukaja", "level": 45, "cost": "12 MP", "type": "support", "effect": "Defense +1 level, all allies." },
+      { "name": "Dekaja", "level": 46, "cost": "10 MP", "type": "support", "effect": "Removes all buffs from all foes." }
+    ]},
+    { "name": "Kamurogi", "alignment": "light", "obtain": "Buy at the Asakusa Junk Shop (stocked after Hikawa at Mantra HQ and Futomimi's speech).", "skills": [
+      { "name": "Blight", "level": 45, "cost": "36% HP", "type": "phys", "effect": "Low physical damage and 20% poison to all foes. High accuracy. Power scales with max HP." },
+      { "name": "Life Gain", "level": 46, "cost": "Passive", "type": "passive", "effect": "Max HP +20%." },
+      { "name": "Iron Claw", "level": 48, "cost": "15% HP", "type": "phys", "effect": "High physical damage to one foe. Low accuracy, high crit." },
+      { "name": "Retaliate", "level": 54, "cost": "Passive", "type": "passive", "effect": "50% chance to counter physical attacks with medium physical damage." },
+      { "name": "Oni-Kagura", "level": 64, "cost": "30% HP", "type": "phys", "effect": "Medium physical damage to all foes. Medium crit." }
+    ]},
+    { "name": "Sophia", "alignment": "light", "obtain": "Buy at the Collector Manikin's Junk Shop in the Asakusa Tunnel (Amala Network revisited chapter).", "skills": [
+      { "name": "Thunderclap", "level": 45, "cost": "12 MP", "type": "light", "effect": "Chance to halve one foe's remaining HP." },
+      { "name": "Samrecarm", "level": 57, "cost": "35 MP", "type": "heal", "effect": "Revives one ally with full HP." },
+      { "name": "Drain Attack", "level": 59, "cost": "Passive", "type": "passive", "effect": "Basic attack restores HP equal to 25% of damage; lowers crit rate." },
+      { "name": "Mediarahan", "level": 63, "cost": "35 MP", "type": "heal", "effect": "Fully restores party's HP." },
+      { "name": "Holy Wrath", "level": 70, "cost": "36 MP", "type": "light", "effect": "Chance to halve remaining HP of all foes." }
+    ]},
+    { "name": "Muspell", "alignment": "neutral", "obtain": "Defeat Mara in a Shibuya alley during a full Kagutsuchi (side quest).", "skills": [
+      { "name": "Tentarafoo", "level": 49, "cost": "15 MP", "type": "mind", "effect": "Medium mind damage and 20% panic to all foes." },
+      { "name": "Makajamon", "level": 53, "cost": "11 MP", "type": "curse", "effect": "20% mute to all foes." },
+      { "name": "Xeros-Beat", "level": 56, "cost": "40% HP", "type": "phys", "effect": "Medium physical damage and 30% bind to all foes. Medium crit." }
+    ]},
+    { "name": "Vimana", "alignment": "neutral", "obtain": "Buy at the Collector Manikin's Junk Shop in the Asakusa Tunnel (Amala Network revisited chapter).", "skills": [
+      { "name": "Endure", "level": 50, "cost": "Passive", "type": "passive", "effect": "Survive a fatal blow with 1 HP." },
+      { "name": "Tempest", "level": 59, "cost": "25% HP", "type": "phys", "effect": "Medium physical damage to all foes. Medium crit." },
+      { "name": "Javelin Rain", "level": 68, "cost": "40% HP", "type": "phys", "effect": "High physical damage and 20% mute to all foes. Medium crit." },
+      { "name": "Life Surge", "level": 71, "cost": "Passive", "type": "passive", "effect": "Max HP +30%." },
+      { "name": "Hades Blast", "level": 73, "cost": "32% HP", "type": "phys", "effect": "High physical damage to all foes. High crit." }
+    ]},
+    { "name": "Satan", "alignment": "dark", "obtain": "Defeat Black Frost (side quest).", "skills": [
+      { "name": "Jive Talk", "level": 51, "cost": "Conversation", "type": "talk", "effect": "Lets Demi-fiend recruit Foul, Haunt and Wilder clan demons." },
+      { "name": "Void Dark", "level": 55, "cost": "Passive", "type": "passive", "effect": "Null dark." },
+      { "name": "Mana Aid", "level": 58, "cost": "Passive", "type": "passive", "effect": "Restores MP moderately after battle (active combatant only)." },
+      { "name": "Charisma", "level": 60, "cost": "Passive", "type": "passive", "effect": "Other conversation skills have 50% chance of instant success." },
+      { "name": "Deadly Fury", "level": 65, "cost": "32% HP", "type": "phys", "effect": "High physical damage to all foes. High crit." }
+    ]},
+    { "name": "Adama", "alignment": "light", "obtain": "Defeat Albion.", "skills": [
+      { "name": "Bolt Storm", "level": 60, "cost": "25 MP", "type": "elec", "effect": "High electric damage and 15% shock to random foes." },
+      { "name": "Mana Surge", "level": 62, "cost": "Passive", "type": "passive", "effect": "Max MP +30%." },
+      { "name": "Elec Drain", "level": 67, "cost": "Passive", "type": "passive", "effect": "Drain electric." }
+    ]},
+    { "name": "Gaea", "alignment": "dark", "obtain": "Behind the locked door on Mantra HQ B1 near the jail cells; needs base Strength 24 (without Magatama bonuses).", "skills": [
+      { "name": "Deathbound", "level": 61, "cost": "25% HP", "type": "phys", "effect": "Medium physical damage to random foes. High accuracy. Power scales with max HP." },
+      { "name": "Avenge", "level": 69, "cost": "Passive", "type": "passive", "effect": "50% chance to counter physical attacks with high physical damage." },
+      { "name": "Gaea Rage", "level": 74, "cost": "35% HP", "type": "phys", "effect": "Massive physical damage to all foes. Medium crit." },
+      { "name": "Attack All", "level": 76, "cost": "Passive", "type": "passive", "effect": "Basic attack targets all foes." }
+    ]},
+    { "name": "Gundari", "alignment": "dark", "obtain": "Defeat Bishamonten in the sealed temple north of Asakusa, opened with the Kimon Stone from Shige (side quest).", "skills": [
+      { "name": "Wind Cutter", "level": 64, "cost": "13 MP", "type": "force", "effect": "Massive force damage to one foe." },
+      { "name": "Force Drain", "level": 66, "cost": "Passive", "type": "passive", "effect": "Drain force." },
+      { "name": "Spiral Viper", "level": 72, "cost": "18% HP", "type": "phys", "effect": "Massive physical damage to one foe. Medium crit." }
+    ]},
+    { "name": "Kailash", "alignment": "neutral", "obtain": "Buy at the Junk Shop on the third level of the Tower of Kagutsuchi.", "skills": [
+      { "name": "Makarakarn", "level": 72, "cost": "45 MP", "type": "support", "effect": "Party shield that repels one non-almighty magic attack (one turn)." },
+      { "name": "Megido", "level": 75, "cost": "30 MP", "type": "almighty", "effect": "Medium almighty damage to all foes." },
+      { "name": "Tetrakarn", "level": 78, "cost": "45 MP", "type": "support", "effect": "Party shield that repels one non-almighty physical attack (one turn)." },
+      { "name": "Freikugel", "level": 80, "cost": "17% HP", "type": "phys-almighty", "effect": "Massive phys-almighty damage to one foe. High accuracy, medium crit." },
+      { "name": "Megidola", "level": 84, "cost": "37 MP", "type": "almighty", "effect": "High almighty damage to all foes." }
+    ]},
+    { "name": "Masakados", "alignment": "neutral", "obtain": "The final Magatama: Bandou Shrine side quest.", "skills": [
+      { "name": "Megidolaon", "level": null, "cost": "50 MP", "type": "almighty", "effect": "Massive almighty damage to all foes." },
+      { "name": "Radiance", "level": null, "cost": "30 MP", "type": "light", "effect": "High light damage to all foes." },
+      { "name": "Fire Repel", "level": null, "cost": "Passive", "type": "passive", "effect": "Repel fire." },
+      { "name": "Ice Repel", "level": null, "cost": "Passive", "type": "passive", "effect": "Repel ice." },
+      { "name": "Elec Repel", "level": null, "cost": "Passive", "type": "passive", "effect": "Repel electric." },
+      { "name": "Force Repel", "level": null, "cost": "Passive", "type": "passive", "effect": "Repel force." },
+      { "name": "Phys Repel", "level": null, "cost": "Passive", "type": "passive", "effect": "Repel physical." }
+    ]}
+  ]
+}

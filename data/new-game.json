@@ -1,0 +1,28 @@
+{
+	"_note": "New-game seed. Starting stats of 2 each and Marogareh as the only starting Magatama are unverified assumptions (rules.json, assumption 'new-game-start'). The story checklist comes from story.json. statGuideId picks the stat guide from stat-guides.json (remove it to use statPattern).",
+	"statGuideId": "physical-2-2-1",
+	"level": 1,
+	"stats": { "STR": 2, "MAG": 2, "VIT": 2, "AGI": 2, "LUC": 2 },
+	"skills": [],
+	"equipped": "Marogareh",
+	"magatama": {
+		"Marogareh": { "nextIndex": 0, "history": [] }
+	},
+	"labyrinthComplete": false,
+	"build": {
+		"target": [
+			"Focus",
+			"Endure",
+			"Freikugel",
+			"Pierce",
+			"Deadly Fury",
+			"Might",
+			"War Cry",
+			"Rakukaja"
+		],
+		"interimKeep": [],
+		"wishlist": [],
+		"statPattern": ["STR", "STR", "VIT"],
+		"statTargets": { "STR": 40, "VIT": 30, "AGI": 30 }
+	}
+}

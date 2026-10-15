@@ -1,0 +1,23 @@
+{
+  "level": 22,
+  "stats": { "STR": 11, "MAG": 2, "VIT": 7, "AGI": 10, "LUC": 2 },
+  "skills": ["Lunge", "Analyze", "Tarunda", "Sukunda", "Rakunda", "Counter", "Heat Wave", "Ice Breath"],
+  "equipped": null,
+  "magatama": {
+    "Marogareh": { "nextIndex": 5, "history": [] },
+    "Wadatsumi": { "nextIndex": 1, "history": [] },
+    "Ankh":      { "nextIndex": 0, "history": [] },
+    "Iyomante":  { "nextIndex": 3, "history": [] },
+    "Shiranui":  { "nextIndex": 0, "history": [] },
+    "Hifumi":    { "nextIndex": 0, "history": [] },
+    "Kamudo":    { "nextIndex": 1, "history": [] }
+  },
+  "labyrinthComplete": false,
+  "build": {
+    "target": ["Focus", "Endure", "Freikugel", "Pierce", "Deadly Fury", "Might", "War Cry", "Rakukaja"],
+    "interimKeep": ["Heat Wave", "Lunge", "Rakunda", "Sukunda", "Counter", "Tarunda", "Analyze"],
+    "wishlist": [],
+    "statPattern": ["STR", "STR", "VIT"],
+    "statTargets": { "STR": 40, "VIT": 30, "AGI": 20 }
+  }
+}
