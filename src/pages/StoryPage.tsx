@@ -178,7 +178,7 @@ function MilestoneRow({ m, index, count }: { m: Milestone; index: number; count:
         )}
         <span className="milestone-tags">
           <Tag
-            tone={m.kind === 'hardsave' ? 'primary' : 'neutral'}
+            tone={m.kind === 'hardsave' ? 'danger' : 'neutral'}
             icon={m.kind === 'hardsave' ? 'lock' : undefined}
           >
             {kindLabel(m.kind)}
@@ -455,7 +455,7 @@ function SaveSlots() {
               <span className="num slots-list-num">Slot {s.slot}</span>
               <span className="slots-list-label">{s.label || 'Untitled'}</span>
               {s.locked ? (
-                <Tag tone="primary" icon="lock">
+                <Tag tone="danger" icon="lock">
                   locked
                 </Tag>
               ) : (

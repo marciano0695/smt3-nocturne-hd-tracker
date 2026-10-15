@@ -7,47 +7,54 @@
 :root {
   color-scheme: light dark;
 
-  /* Surfaces: neutral page, faintly crimson-tinted panels. */
-  --bg: light-dark(oklch(1 0 0), oklch(0.145 0 0));
-  --surface: light-dark(oklch(0.972 0.004 355), oklch(0.185 0.005 355));
-  --raised: light-dark(oklch(0.945 0.006 355), oklch(0.225 0.007 355));
-  --line: light-dark(oklch(0.88 0.008 355), oklch(0.32 0.008 355));
-  --line-strong: light-dark(oklch(0.62 0.012 355), oklch(0.52 0.012 355));
+  /* Surfaces: blue-black ink at night, cool grey-white by day. */
+  --bg: light-dark(oklch(0.968 0.004 230), oklch(0.17 0.014 232));
+  --surface: light-dark(oklch(1 0 0), oklch(0.205 0.016 232));
+  --raised: light-dark(oklch(0.94 0.006 230), oklch(0.235 0.018 232));
+  --line: light-dark(oklch(0.88 0.008 230), oklch(0.32 0.018 232));
+  --line-strong: light-dark(oklch(0.6 0.014 230), oklch(0.52 0.02 232));
 
   /* Text. */
-  --ink: light-dark(oklch(0.21 0.012 355), oklch(0.93 0.005 355));
-  --muted: light-dark(oklch(0.48 0.014 355), oklch(0.72 0.01 355));
+  --ink: light-dark(oklch(0.2 0.014 232), oklch(0.93 0.008 220));
+  --muted: light-dark(oklch(0.45 0.016 232), oklch(0.74 0.016 228));
+  --dim: light-dark(oklch(0.52 0.014 232), oklch(0.62 0.016 228));
 
-  /* Primary: the single crimson warning light. Primary actions, current selection, irreversible moments. */
-  --primary: light-dark(oklch(0.47 0.173 354.8), oklch(0.68 0.19 357));
-  --primary-fill: light-dark(oklch(0.47 0.173 354.8), oklch(0.56 0.2 356));
-  --primary-fill-hover: light-dark(oklch(0.41 0.16 354.8), oklch(0.6 0.2 356));
-  --on-primary: light-dark(oklch(1 0 0), oklch(0.99 0 0));
-  --primary-soft: light-dark(oklch(0.94 0.03 356), oklch(0.27 0.06 356));
+  /* Primary: the Demi-fiend's cyan markings. Primary actions, current selection, target skills. */
+  --primary: light-dark(oklch(0.5 0.09 200), oklch(0.81 0.1 195));
+  --primary-fill: light-dark(oklch(0.5 0.09 200), oklch(0.78 0.1 195));
+  --primary-fill-hover: light-dark(oklch(0.44 0.085 200), oklch(0.84 0.1 195));
+  --on-primary: light-dark(oklch(1 0 0), oklch(0.18 0.02 232));
+  --primary-soft: light-dark(oklch(0.94 0.025 200), oklch(0.27 0.04 200));
 
-  /* Accent: the Demi-fiend's markings, a quiet teal. Links, focus, "scheduled" and info states. */
-  --accent: light-dark(oklch(0.48 0.07 200), oklch(0.8 0.085 190));
-  --accent-soft: light-dark(oklch(0.95 0.02 200), oklch(0.27 0.035 190));
+  /* Accent shares the markings' hue: links, focus, "scheduled" and info states. */
+  --accent: var(--primary);
+  --accent-soft: var(--primary-soft);
+
+  /* Crimson: the single warning light, only for irreversible moments (hard saves, overwrites, declines). */
+  --crimson: light-dark(oklch(0.47 0.18 22), oklch(0.7 0.18 22));
+  --crimson-fill: light-dark(oklch(0.47 0.18 22), oklch(0.55 0.2 24));
+  --crimson-fill-hover: light-dark(oklch(0.42 0.17 22), oklch(0.6 0.2 24));
+  --on-crimson: oklch(0.99 0 0);
+  --crimson-soft: light-dark(oklch(0.95 0.025 22), oklch(0.26 0.07 22));
 
   /* Semantic states; each pairs a strong foreground with a soft background. */
   --success: light-dark(oklch(0.48 0.12 150), oklch(0.78 0.12 150));
   --success-soft: light-dark(oklch(0.95 0.03 150), oklch(0.27 0.045 150));
   --warning: light-dark(oklch(0.53 0.105 70), oklch(0.83 0.12 80));
   --warning-soft: light-dark(oklch(0.95 0.035 80), oklch(0.28 0.045 80));
-  --danger: light-dark(oklch(0.52 0.19 28), oklch(0.7 0.17 28));
-  --danger-soft: light-dark(oklch(0.95 0.025 28), oklch(0.27 0.06 28));
+  --danger: var(--crimson);
+  --danger-soft: var(--crimson-soft);
 
   --focus: var(--accent);
-  --overlay: light-dark(oklch(0.21 0.012 355 / 0.4), oklch(0 0 0 / 0.6));
+  --overlay: light-dark(oklch(0.2 0.014 232 / 0.4), oklch(0.08 0.01 232 / 0.7));
   --shadow-overlay:
     0 1px 2px light-dark(oklch(0 0 0 / 0.08), oklch(0 0 0 / 0.5)),
     0 12px 32px light-dark(oklch(0 0 0 / 0.14), oklch(0 0 0 / 0.55));
 
-  /* Type: one sans for the interface, a book serif only for page titles and the wordmark. */
-  --font-sans: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-serif:
-    'Iowan Old Style', 'Palatino Linotype', Palatino, 'URW Palladio L', P052, 'Book Antiqua',
-    Georgia, serif;
+  /* Type: one family, Archivo. Condensed widths carry titles, levels and the wordmark; body stays normal width. */
+  --font-sans:
+    'Archivo', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --stretch-display: 75%;
   --font-mono: ui-monospace, 'SF Mono', Menlo, Consolas, 'Liberation Mono', monospace;
 
   --text-xs: 0.75rem;
@@ -55,7 +62,8 @@
   --text-md: 1rem;
   --text-lg: 1.125rem;
   --text-xl: 1.375rem;
-  --text-2xl: 1.75rem;
+  --text-2xl: 1.875rem;
+  --text-3xl: 2.5rem;
   --leading-tight: 1.25;
   --leading: 1.5;
 
@@ -70,14 +78,14 @@
   --space-8: 4rem;
 
   /* Sharp, not bubbly. */
-  --radius-sm: 3px;
-  --radius: 6px;
-  --radius-lg: 10px;
+  --radius-sm: 2px;
+  --radius: 4px;
+  --radius-lg: 6px;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --dur-fast: 120ms;
-  --dur: 180ms;
-  --dur-slow: 240ms;
+  --dur: 160ms;
+  --dur-slow: 200ms;
 
   --z-sticky: 10;
   --z-nav: 20;
@@ -85,7 +93,7 @@
   --z-toast: 40;
 
   --content-max: 72rem;
-  --nav-width: 14rem;
+  --nav-width: 15rem;
   --tabbar-height: 4rem;
   --tap: 2.75rem;
 }

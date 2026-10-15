@@ -8,6 +8,7 @@ import {
   unlockLabel,
 } from '../game/data';
 import { defaultSkillChoice, offerAt, suggestLevelUp, validateLevelUp } from '../game/levelUp';
+import { replacedAt } from '../game/scheduler';
 import { suggestStat } from '../game/statPlan';
 import {
   STATS,
@@ -19,6 +20,7 @@ import {
   type Stat,
 } from '../game/types';
 import { useStore } from '../state/store';
+import { Icon } from './Icon';
 import { AssumptionTag, Button, Dialog, Empty, Field, IconButton, Tag, Unverified } from './ui';
 
 const ALIGNMENT_LABEL = { light: 'Light', neutral: 'Neutral', dark: 'Dark' } as const;
@@ -48,26 +50,108 @@ export function MagatamaSource({ name, withAlignment }: { name: string; withAlig
 
 /** The 8 skill slots; target-build skills stand out. */
 export function SkillSlots({ compact }: { compact?: boolean }) {
-  const { state, data } = useStore();
+  const { state, data, plan } = useStore();
+  const { target, interimKeep } = state.build;
   const slots = Array.from({ length: data.rules.maxSkills }, (_, i) => state.skills[i] ?? null);
+  const held = state.skills.filter((s) => target.includes(s)).length;
   return (
-    <ol className={`slots${compact ? ' slots-compact' : ''}`} aria-label="Skill slots">
-      {slots.map((skill, i) => {
-        const target = skill !== null && state.build.target.includes(skill);
-        const info = skill ? findSkill(data, skill)?.skill : undefined;
-        return (
-          <li
-            key={i}
-            className={`slot${skill ? '' : ' slot-empty'}${target ? ' slot-target' : ''}`}
-          >
-            <span className="slot-num num">{i + 1}</span>
-            <span className="slot-name">{skill ?? 'Empty'}</span>
-            {target && <span className="slot-mark">target</span>}
-            {!compact && info && <span className="slot-meta">{info.cost}</span>}
-          </li>
-        );
-      })}
-    </ol>
+    <div className="slots-wrap">
+      <p className="slots-count">
+        <span className="meter" aria-hidden="true">
+          {target.map((t, i) => (
+            <i key={t} className={i < held ? 'is-on' : undefined} />
+          ))}
+        </span>
+        <span>
+          Target skills held: <strong className="num">{held}</strong> of{' '}
+          <span className="num">{target.length}</span>
+        </span>
+      </p>
+      <ol className={`slots${compact ? ' slots-compact' : ''}`} aria-label="Skill slots">
+        {slots.map((skill, i) => {
+          const isTarget = skill !== null && target.includes(skill);
+          const info = skill ? findSkill(data, skill)?.skill : undefined;
+          const out = skill && !isTarget ? replacedAt(plan, skill) : undefined;
+          const keep = skill ? interimKeep.indexOf(skill) : -1;
+          return (
+            <li
+              key={i}
+              className={`slot${skill ? '' : ' slot-empty'}${isTarget ? ' slot-target' : ''}`}
+            >
+              <span className="slot-num num">{i + 1}</span>
+              <span className="slot-name">{skill ?? 'Empty'}</span>
+              {skill && (
+                <span className="slot-sub">
+                  {isTarget ? (
+                    <span className="slot-mark">Target</span>
+                  ) : out ? (
+                    <span className="slot-out">
+                      Out at <span className="num">{out.level}</span> for {out.skill}
+                    </span>
+                  ) : keep >= 0 ? (
+                    <span>
+                      Keep, priority <span className="num">{keep + 1}</span>
+                    </span>
+                  ) : (
+                    <span>Not kept</span>
+                  )}
+                  {!compact && info && <span className="slot-meta">{info.cost}</span>}
+                </span>
+              )}
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  );
+}
+
+/** The next level-ups as a line of nodes; target learns are the filled ones. */
+export function ScheduleTimeline({ count = 10 }: { count?: number }) {
+  const { plan, state } = useStore();
+  const steps = plan.slice(0, count);
+  if (steps.length === 0) return null;
+  return (
+    <div className="timeline">
+      <ol aria-label="Next level-ups">
+        {steps.map((step, i) => {
+          const isTarget =
+            step.action === 'learn' &&
+            step.skill !== null &&
+            state.build.target.includes(step.skill);
+          const kind = isTarget ? 'is-target' : step.action === 'learn' ? 'is-learn' : 'is-idle';
+          const label = step.skill ?? (step.reason === 'free' ? 'free' : 'nothing');
+          return (
+            <li key={step.level} className={`tl ${kind}${i === 0 ? ' is-next' : ''}`}>
+              <span className="tl-level num">{step.level}</span>
+              <span className="tl-dot" aria-hidden="true" />
+              <span className="tl-skill">{label}</span>
+              <span className="visually-hidden">
+                {step.magatama
+                  ? `${step.magatama}, ${step.action === 'learn' ? 'learn' : 'decline'}${isTarget ? ', target skill' : ''}`
+                  : step.reason === 'free'
+                    ? 'free level'
+                    : 'nothing to learn'}
+              </span>
+            </li>
+          );
+        })}
+      </ol>
+      <p className="tl-legend">
+        <span>
+          <i className="is-target" aria-hidden="true" />
+          Learn a target skill
+        </span>
+        <span>
+          <i className="is-learn" aria-hidden="true" />
+          Learn another skill
+        </span>
+        <span>
+          <i aria-hidden="true" />
+          Decline or free level
+        </span>
+      </p>
+    </div>
   );
 }
 
@@ -679,22 +763,43 @@ function AddMagatamaDialog({ open, onClose }: { open: boolean; onClose: () => vo
   );
 }
 
-export function LevelUpActions() {
-  const { save, state, data, undoLevelUp } = useStore();
+/** The one Level up entry point: a tab-bar button on phones, a rail button with Undo on desktop. */
+export function LevelUpActions({ layout }: { layout: 'rail' | 'tab' }) {
+  const { state, data } = useStore();
   const [open, setOpen] = useState(false);
   const atMax = state.level >= data.rules.maxLevel;
   return (
-    <div className="levelup-actions">
-      <Button variant="primary" icon="up" onClick={() => setOpen(true)} disabled={atMax}>
-        Level up
-      </Button>
-      {save.undo.length > 0 && (
-        <Button variant="ghost" icon="undo" onClick={undoLevelUp}>
-          Undo level {state.level}
-        </Button>
+    <>
+      {layout === 'tab' ? (
+        <button
+          type="button"
+          className="tab-levelup"
+          onClick={() => setOpen(true)}
+          disabled={atMax}
+        >
+          <Icon name="up" size={20} />
+          <span>Level up</span>
+        </button>
+      ) : (
+        <div className="levelup-actions">
+          <Button variant="primary" icon="up" onClick={() => setOpen(true)} disabled={atMax}>
+            {atMax ? 'Max level' : `Level up to ${state.level + 1}`}
+          </Button>
+          <UndoLevelUpButton />
+        </div>
       )}
       <LevelUpDialog open={open} onClose={() => setOpen(false)} />
-    </div>
+    </>
+  );
+}
+
+export function UndoLevelUpButton() {
+  const { save, state, undoLevelUp } = useStore();
+  if (save.undo.length === 0) return null;
+  return (
+    <Button variant="ghost" icon="undo" onClick={undoLevelUp}>
+      Undo level {state.level}
+    </Button>
   );
 }
 

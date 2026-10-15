@@ -1,70 +1,568 @@
 {
-  "_note": "The full playthrough in order, from the Samurai Gamers HD Remaster walkthrough, cross-checked with Game8 and RPG Site: story chapters, Fiends, Labyrinth Kalpas and side quests where they open, the five hard saves (one before each ending choice) and the six endings. 'requires' lists milestones that must be done before this one is marked available automatically; an ending requires the hard save it branches from. 'magatama' is added to your Magatama when the milestone is marked done. 'verified': false shows an 'unverified' tag until you confirm it.",
-  "milestones": [
-    { "id": "story-shinjuku-medical-center", "title": "Shinjuku Medical Center", "kind": "story", "recommendedLevel": 1, "available": true, "done": false, "verified": false, "notes": "Bosses: Pretas, Forneus. Forneus gives the Wadatsumi Magatama. (Samurai Gamers HD Remaster walkthrough; Game8 agrees)", "magatama": "Wadatsumi" },
+	"_note": "The full playthrough in order, from the Samurai Gamers HD Remaster walkthrough, cross-checked with Game8 and RPG Site: story chapters, Fiends, Labyrinth Kalpas and side quests where they open, the five hard saves (one before each ending choice) and the six endings. 'requires' lists milestones that must be done before this one is marked available automatically; an ending requires the hard save it branches from. 'magatama' is added to your Magatama when the milestone is marked done. 'verified': false shows an 'unverified' tag until you confirm it.",
+	"milestones": [
+		{
+			"id": "story-shinjuku-medical-center",
+			"title": "Shinjuku Medical Center",
+			"kind": "story",
+			"recommendedLevel": 1,
+			"available": true,
+			"done": false,
+			"verified": true,
+			"notes": "Bosses: Pretas, Forneus. Forneus gives the Wadatsumi Magatama. (Samurai Gamers HD Remaster walkthrough; Game8 agrees)",
+			"magatama": "Wadatsumi"
+		},
 
-    { "id": "story-shibuya-amala-network", "title": "Yoyogi Park, Shibuya and Amala Network", "kind": "story", "recommendedLevel": 6, "available": false, "done": false, "verified": false, "notes": "Bosses: Nekomata (twice), Specters. Shibuya Junk Shop sells Iyomante and Shiranui; letting Pixie go gives Ankh. (Samurai Gamers HD Remaster walkthrough; Game8 agrees)", "requires": ["story-shinjuku-medical-center"] },
+		{
+			"id": "story-shibuya-amala-network",
+			"title": "Yoyogi Park, Shibuya and Amala Network",
+			"kind": "story",
+			"recommendedLevel": 6,
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "Bosses: Nekomata (twice), Specters. Shibuya Junk Shop sells Iyomante and Shiranui; letting Pixie go gives Ankh. (Samurai Gamers HD Remaster walkthrough; Game8 agrees)",
+			"requires": ["story-shinjuku-medical-center"]
+		},
 
-    { "id": "story-ginza", "title": "Ginza and the Great Underpass", "kind": "story", "recommendedLevel": 11, "available": false, "done": false, "verified": false, "notes": "Order: Ginza, Harumi Warehouse, Great Underpass (the 1,000 Bill from Nyx's Lounge, then Troll), across the two southeast bridges to Succubus at Tokyo Tower, then Matador in the Great Underpass. Tokyo Tower is only in Samurai Gamers; Game8 goes straight from Troll to Matador, and neither says if it is required. The Great Underpass Junk Shop sells Ankh, Hifumi and Kamudo. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Extras: Rag's Jewelry Shop (between the Ginza Cathedral of Shadows and Nyx's Lounge) trades gems for items. If you own the paid Mercy and Expectation Map Pack, its grinding map (Where the Demi-fiend was Born) opens when you first reach Ginza (Game8).", "requires": ["story-shibuya-amala-network"] },
-    { "id": "fiend-matador", "title": "Fiend: Matador", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Main boss in the Great Underpass of Ginza, past the door the Manikin gatekeeper guards. Drops the Candelabrum (Menorah) of Foundation; Kalpa 1 opens right after (Samurai Gamers, Game8).", "requires": ["story-shibuya-amala-network"] },
-    { "id": "kalpa-1", "title": "Labyrinth of Amala: Kalpa 1", "kind": "labyrinth", "available": false, "done": false, "verified": true, "notes": "Opens right after defeating Matador. Clear it before you enter Asakusa if you want the True Demon ending.", "requires": ["fiend-matador"], "recommendedLevel": 20 },
-    { "id": "side-black-visor", "title": "Black Visor and the Burial Chambers", "kind": "side", "available": false, "done": false, "verified": false, "notes": "Behind the locked silver door in Kalpa 1 is the Black Visor. With it, tombstones in the Burial Chambers of each Kalpa let you refight bosses you've beaten (rewards are modest; some rooms need base Strength 25 or Luck 18, or fusing Metatron) (Game8; Samurai Gamers says the Moon Key from Kalpa 2 opens the way).", "requires": ["kalpa-1"] },
+		{
+			"id": "story-ginza",
+			"title": "Ginza and the Great Underpass",
+			"kind": "story",
+			"recommendedLevel": 11,
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "Order: Ginza, Harumi Warehouse, Great Underpass (the 1,000 Bill from Nyx's Lounge, then Troll), across the two southeast bridges to Succubus at Tokyo Tower, then Matador in the Great Underpass. Tokyo Tower is only in Samurai Gamers; Game8 goes straight from Troll to Matador, and neither says if it is required. The Great Underpass Junk Shop sells Ankh, Hifumi and Kamudo. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Extras: Rag's Jewelry Shop (between the Ginza Cathedral of Shadows and Nyx's Lounge) trades gems for items. If you own the paid Mercy and Expectation Map Pack, its grinding map (Where the Demi-fiend was Born) opens when you first reach Ginza (Game8).",
+			"requires": ["story-shibuya-amala-network"]
+		},
+		{
+			"id": "fiend-matador",
+			"title": "Fiend: Matador",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "Main boss in the Great Underpass of Ginza, past the door the Manikin gatekeeper guards. Drops the Candelabrum (Menorah) of Foundation; Kalpa 1 opens right after (Samurai Gamers, Game8).",
+			"requires": ["story-shibuya-amala-network"]
+		},
+		{
+			"id": "kalpa-1",
+			"title": "Labyrinth of Amala: Kalpa 1",
+			"kind": "labyrinth",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "Opens right after defeating Matador. Clear it before you enter Asakusa if you want the True Demon ending.",
+			"requires": ["fiend-matador"],
+			"recommendedLevel": 20
+		},
+		{
+			"id": "side-black-visor",
+			"title": "Black Visor and the Burial Chambers",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Behind the locked silver door in Kalpa 1 is the Black Visor. With it, tombstones in the Burial Chambers of each Kalpa let you refight bosses you've beaten (rewards are modest; some rooms need base Strength 25 or Luck 18, or fusing Metatron) (Game8; Samurai Gamers says the Moon Key from Kalpa 2 opens the way).",
+			"requires": ["kalpa-1"]
+		},
 
-    { "id": "story-ikebukuro-mantra-hq", "title": "Ikebukuro and Mantra Headquarters", "kind": "story", "recommendedLevel": 21, "available": false, "done": false, "verified": false, "notes": "Bosses: Oni, Orthrus, Yaksini, Thor (gives Narukami), Raidou/Dante, then Daisoujou. Your answers to the Oni and Gozu-Tennoh affect your Reason. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Reason flags here: Shijima 1/2 (agree with Hikawa: \"Actually, I do\") and Yosuga 1/2 (agree with Chiaki: \"Yeah, I get it\"). First flags don't lock anything; RPG Site suggests taking the first flag of each Reason to keep them all open (Game8, Samurai Gamers, RPG Site).", "requires": ["story-ginza"], "magatama": "Narukami" },
-    { "id": "fiend-daisoujou", "title": "Fiend: Daisoujou", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Eastern Ikebukuro hallway before the escalators, after you first speak to Gozu-Tennoh (Game8); Samurai Gamers lists him as the last Mantra Headquarters boss. Drops the Candelabrum (Menorah) of Eternity, needed for Kalpa 2.", "requires": ["story-ginza"] },
+		{
+			"id": "story-ikebukuro-mantra-hq",
+			"title": "Ikebukuro and Mantra Headquarters",
+			"kind": "story",
+			"recommendedLevel": 21,
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Bosses: Oni, Orthrus, Yaksini, Thor (gives Narukami), Raidou/Dante, then Daisoujou. Your answers to the Oni and Gozu-Tennoh affect your Reason. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Reason flags here: Shijima 1/2 (agree with Hikawa: \"Actually, I do\") and Yosuga 1/2 (agree with Chiaki: \"Yeah, I get it\"). First flags don't lock anything; RPG Site suggests taking the first flag of each Reason to keep them all open (Game8, Samurai Gamers, RPG Site).",
+			"requires": ["story-ginza"],
+			"magatama": "Narukami"
+		},
+		{
+			"id": "fiend-daisoujou",
+			"title": "Fiend: Daisoujou",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Eastern Ikebukuro hallway before the escalators, after you first speak to Gozu-Tennoh (Game8); Samurai Gamers lists him as the last Mantra Headquarters boss. Drops the Candelabrum (Menorah) of Eternity, needed for Kalpa 2.",
+			"requires": ["story-ginza"]
+		},
 
-    { "id": "story-assembly-of-nihilo", "title": "Assembly of Nihilo and Mantra HQ revisited", "kind": "story", "recommendedLevel": 25, "available": false, "done": false, "verified": false, "notes": "Bosses: Eligor (three fights), Berith, Kaiwan, Ose (gives Anathema), then Hell Biker after the Mantra HQ highway. (Samurai Gamers HD Remaster walkthrough; Game8 agrees)", "requires": ["story-ikebukuro-mantra-hq"], "magatama": "Anathema" },
-    { "id": "fiend-hell-biker", "title": "Fiend: Hell Biker", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Highway south of Ikebukuro, through the guarded door on Mantra HQ 1F (Game8, Samurai Gamers). Drops the Candelabrum (Menorah) of Dignity, needed for Kalpa 2.", "requires": ["story-ikebukuro-mantra-hq"] },
-    { "id": "side-mantra-secret-door", "title": "Mantra Building secret door", "kind": "side", "available": false, "done": false, "verified": false, "magatama": "Gaea", "notes": "Opens: from the Mantra HQ revisit, once base Strength (without Magatama bonuses) is 24 (Game8, Samurai Gamers). The stat plan shows when. The locked door is on B1 near the jail cells. Reward: Gaea Magatama.", "requires": ["story-ikebukuro-mantra-hq"] },
-    { "id": "kalpa-2", "title": "Labyrinth of Amala: Kalpa 2", "kind": "labyrinth", "available": false, "done": false, "verified": true, "notes": "Place the Candelabra of Eternity (Daisoujou) and Dignity (Hell Biker) at the central pillars. Ends with a cutscene with the Riders.", "requires": ["kalpa-1", "fiend-daisoujou", "fiend-hell-biker"], "recommendedLevel": 35 },
+		{
+			"id": "story-assembly-of-nihilo",
+			"title": "Assembly of Nihilo and Mantra HQ revisited",
+			"kind": "story",
+			"recommendedLevel": 25,
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Bosses: Eligor (three fights), Berith, Kaiwan, Ose (gives Anathema), then Hell Biker after the Mantra HQ highway. (Samurai Gamers HD Remaster walkthrough; Game8 agrees)",
+			"requires": ["story-ikebukuro-mantra-hq"],
+			"magatama": "Anathema"
+		},
+		{
+			"id": "fiend-hell-biker",
+			"title": "Fiend: Hell Biker",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Highway south of Ikebukuro, through the guarded door on Mantra HQ 1F (Game8, Samurai Gamers). Drops the Candelabrum (Menorah) of Dignity, needed for Kalpa 2.",
+			"requires": ["story-ikebukuro-mantra-hq"]
+		},
+		{
+			"id": "side-mantra-secret-door",
+			"title": "Mantra Building secret door",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"magatama": "Gaea",
+			"notes": "Opens: from the Mantra HQ revisit, once base Strength (without Magatama bonuses) is 24 (Game8, Samurai Gamers). The stat plan shows when. The locked door is on B1 near the jail cells. Reward: Gaea Magatama.",
+			"requires": ["story-ikebukuro-mantra-hq"]
+		},
+		{
+			"id": "kalpa-2",
+			"title": "Labyrinth of Amala: Kalpa 2",
+			"kind": "labyrinth",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "Place the Candelabra of Eternity (Daisoujou) and Dignity (Hell Biker) at the central pillars. Ends with a cutscene with the Riders.",
+			"requires": ["kalpa-1", "fiend-daisoujou", "fiend-hell-biker"],
+			"recommendedLevel": 35
+		},
 
-    { "id": "story-kabukicho-prison", "title": "Kabukicho Prison", "kind": "story", "recommendedLevel": 30, "available": false, "done": false, "verified": false, "notes": "Boss: Mizuchi (gives Miasma). Open chests during a full Kagutsuchi for rare items. (Samurai Gamers HD Remaster walkthrough; Game8 agrees)", "requires": ["story-assembly-of-nihilo"], "magatama": "Miasma" },
+		{
+			"id": "story-kabukicho-prison",
+			"title": "Kabukicho Prison",
+			"kind": "story",
+			"recommendedLevel": 30,
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Boss: Mizuchi (gives Miasma). Open chests during a full Kagutsuchi for rare items. (Samurai Gamers HD Remaster walkthrough; Game8 agrees)",
+			"requires": ["story-assembly-of-nihilo"],
+			"magatama": "Miasma"
+		},
 
-    { "id": "side-four-oni", "title": "Ikebukuro Tunnel: the Four Oni", "kind": "story", "recommendedLevel": 30, "available": false, "done": false, "verified": false, "magatama": "Murakumo", "notes": "Main bosses in the Ikebukuro Tunnel (dark: bring Light Balls or Lightoma): Sui-Ki, Kin-Ki, Fuu-Ki and Ongyo-Ki (fight Ongyo-Ki during a full Kagutsuchi to see his real shadow). Beating the Four Oni gives the Murakumo Magatama. Clear Kalpa 1 before going on to Asakusa if you want the True Demon ending (Samurai Gamers, Game8).", "requires": ["story-kabukicho-prison"] },
+		{
+			"id": "side-four-oni",
+			"title": "Ikebukuro Tunnel: the Four Oni",
+			"kind": "story",
+			"recommendedLevel": 30,
+			"available": false,
+			"done": false,
+			"verified": false,
+			"magatama": "Murakumo",
+			"notes": "Main bosses in the Ikebukuro Tunnel (dark: bring Light Balls or Lightoma): Sui-Ki, Kin-Ki, Fuu-Ki and Ongyo-Ki (fight Ongyo-Ki during a full Kagutsuchi to see his real shadow). Beating the Four Oni gives the Murakumo Magatama. Clear Kalpa 1 before going on to Asakusa if you want the True Demon ending (Samurai Gamers, Game8).",
+			"requires": ["story-kabukicho-prison"]
+		},
 
-    { "id": "story-asakusa-obelisk", "title": "Asakusa and the Obelisk", "kind": "story", "available": false, "done": false, "verified": false, "notes": "Bosses: White Rider (Asakusa Terminal), Red Rider (Ginza Underpass), the Moirae Sisters on the Obelisk (give Djed), Black Rider (Shinjuku Medical Center B204). (Samurai Gamers HD Remaster walkthrough; Game8 agrees)", "requires": ["side-four-oni"], "magatama": "Djed" },
-    { "id": "fiend-white-rider", "title": "Fiend: White Rider", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Asakusa, in front of the Fountain of Life and Amala Link doors, once you first reach Asakusa from the Ikebukuro Tunnel (Game8). Drops the Candelabrum (Menorah) of Compassion, needed for Kalpa 3.", "requires": ["kalpa-2", "side-four-oni"] },
-    { "id": "fiend-red-rider", "title": "Fiend: Red Rider", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Ginza Underpass, in the hallway in front of the save room, after taking the Amala Link there (Game8). Drops the Candelabrum (Menorah) of Insight, needed for Kalpa 3.", "requires": ["kalpa-2", "side-four-oni"] },
-    { "id": "side-puzzle-boy", "title": "Puzzle Boy (Asakusa)", "kind": "side", "available": false, "done": false, "verified": false, "magatama": "Geis", "notes": "Opens: when you reach Asakusa. Play the mini-game machine and clear all 20 stages (Samurai Gamers: in one sitting). Reward: Geis Magatama.", "requires": ["side-four-oni"] },
-    { "id": "fiend-black-rider", "title": "Fiend: Black Rider", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Shinjuku Medical Center annex, room B204. Appears once White and Red Rider are defeated and the Obelisk is finished (Game8). Drops the Candelabrum (Menorah) of Wisdom, needed for Kalpa 3.", "requires": ["story-asakusa-obelisk", "fiend-white-rider", "fiend-red-rider"] },
-    { "id": "kalpa-3", "title": "Labyrinth of Amala: Kalpa 3", "kind": "labyrinth", "available": false, "done": false, "verified": true, "notes": "Needs the Candelabra of Compassion, Insight and Wisdom (White, Red and Black Rider). Raidou/Dante waits at the end.", "requires": ["kalpa-2", "fiend-white-rider", "fiend-red-rider", "fiend-black-rider"], "recommendedLevel": 50 },
-    { "id": "fiend-raidou-dante", "title": "Fiend: Raidou / Dante", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Near the end of Kalpa 3, before the way to Kalpa 4 (B4 per Game8, B5F after a chase per Samurai Gamers). Raidou by default, Dante with the DLC. Drops the Candelabrum (Menorah) of Knowledge, needed for Kalpa 4. Uses party-wide almighty attacks at half HP." },
-    { "id": "side-mara", "title": "Mara (Shibuya, full Kagutsuchi)", "kind": "side", "available": false, "done": false, "verified": false, "magatama": "Muspell", "notes": "Opens: after the Obelisk. During a full Kagutsuchi, go behind the building at the far end of Shibuya's Hachiko Intersection and enter the door; two Manikins there are summoning Mara (Game8; your list mentions Baphomet). Game8 recommends level 70+. Reward: Muspell Magatama.", "requires": ["story-asakusa-obelisk"], "recommendedLevel": 70 },
+		{
+			"id": "story-asakusa-obelisk",
+			"title": "Asakusa and the Obelisk",
+			"kind": "story",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Bosses: White Rider (Asakusa Terminal), Red Rider (Ginza Underpass), the Moirae Sisters on the Obelisk (give Djed), Black Rider (Shinjuku Medical Center B204). (Samurai Gamers HD Remaster walkthrough; Game8 agrees)",
+			"requires": ["side-four-oni"],
+			"magatama": "Djed"
+		},
+		{
+			"id": "fiend-white-rider",
+			"title": "Fiend: White Rider",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Asakusa, in front of the Fountain of Life and Amala Link doors, once you first reach Asakusa from the Ikebukuro Tunnel (Game8). Drops the Candelabrum (Menorah) of Compassion, needed for Kalpa 3.",
+			"requires": ["kalpa-2", "side-four-oni"]
+		},
+		{
+			"id": "fiend-red-rider",
+			"title": "Fiend: Red Rider",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Ginza Underpass, in the hallway in front of the save room, after taking the Amala Link there (Game8). Drops the Candelabrum (Menorah) of Insight, needed for Kalpa 3.",
+			"requires": ["kalpa-2", "side-four-oni"]
+		},
+		{
+			"id": "side-puzzle-boy",
+			"title": "Puzzle Boy (Asakusa)",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"magatama": "Geis",
+			"notes": "Opens: when you reach Asakusa. Play the mini-game machine and clear all 20 stages (Samurai Gamers: in one sitting). Reward: Geis Magatama.",
+			"requires": ["side-four-oni"]
+		},
+		{
+			"id": "fiend-black-rider",
+			"title": "Fiend: Black Rider",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Shinjuku Medical Center annex, room B204. Appears once White and Red Rider are defeated and the Obelisk is finished (Game8). Drops the Candelabrum (Menorah) of Wisdom, needed for Kalpa 3.",
+			"requires": [
+				"story-asakusa-obelisk",
+				"fiend-white-rider",
+				"fiend-red-rider"
+			]
+		},
+		{
+			"id": "kalpa-3",
+			"title": "Labyrinth of Amala: Kalpa 3",
+			"kind": "labyrinth",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "Needs the Candelabra of Compassion, Insight and Wisdom (White, Red and Black Rider). Raidou/Dante waits at the end.",
+			"requires": [
+				"kalpa-2",
+				"fiend-white-rider",
+				"fiend-red-rider",
+				"fiend-black-rider"
+			],
+			"recommendedLevel": 50
+		},
+		{
+			"id": "fiend-raidou-dante",
+			"title": "Fiend: Raidou / Dante",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Near the end of Kalpa 3, before the way to Kalpa 4 (B4 per Game8, B5F after a chase per Samurai Gamers). Raidou by default, Dante with the DLC. Drops the Candelabrum (Menorah) of Knowledge, needed for Kalpa 4. Uses party-wide almighty attacks at half HP."
+		},
+		{
+			"id": "side-mara",
+			"title": "Mara (Shibuya, full Kagutsuchi)",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"magatama": "Muspell",
+			"notes": "Opens: after the Obelisk. During a full Kagutsuchi, go behind the building at the far end of Shibuya's Hachiko Intersection and enter the door; two Manikins there are summoning Mara (Game8; your list mentions Baphomet). Game8 recommends level 70+. Reward: Muspell Magatama.",
+			"requires": ["story-asakusa-obelisk"],
+			"recommendedLevel": 70
+		},
 
-    { "id": "story-amala-network-revisited", "title": "Amala Network revisited", "kind": "story", "available": false, "done": false, "verified": false, "notes": "Black Rider (if not done), Specter, then a Futomimi cutscene in Mifunashiro (reached from Asakusa) and Pale Rider behind the west door on Nakamise-Dori. Game8 recommends level 65+ for these bosses (a reader beat them at 43). The Asakusa Tunnel Junk Shop sells Kamurogi, Vimana (Endure) and Sophia (Samurai Gamers). Reason flag: Musubi 1/2 (agree with Isamu: \"I can relate\") (Game8, Samurai Gamers).", "requires": ["story-asakusa-obelisk"] },
-    { "id": "fiend-pale-rider", "title": "Fiend: Pale Rider", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Asakusa: through the west door on Nakamise-Dori (B1), after the Futomimi cutscene in Mifunashiro and once White, Red and Black Rider are defeated (Game8, Samurai Gamers). Drops the Candelabrum (Menorah) of Majesty, needed for Kalpa 4.", "requires": ["fiend-white-rider", "fiend-red-rider", "fiend-black-rider"] },
+		{
+			"id": "story-amala-network-revisited",
+			"title": "Amala Network revisited",
+			"kind": "story",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Black Rider (if not done), Specter, then a Futomimi cutscene in Mifunashiro (reached from Asakusa) and Pale Rider behind the west door on Nakamise-Dori. Game8 recommends level 65+ for these bosses (a reader beat them at 43). The Asakusa Tunnel Junk Shop sells Kamurogi, Vimana (Endure) and Sophia (Samurai Gamers). Reason flag: Musubi 1/2 (agree with Isamu: \"I can relate\") (Game8, Samurai Gamers).",
+			"requires": ["story-asakusa-obelisk"]
+		},
+		{
+			"id": "fiend-pale-rider",
+			"title": "Fiend: Pale Rider",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Asakusa: through the west door on Nakamise-Dori (B1), after the Futomimi cutscene in Mifunashiro and once White, Red and Black Rider are defeated (Game8, Samurai Gamers). Drops the Candelabrum (Menorah) of Majesty, needed for Kalpa 4.",
+			"requires": ["fiend-white-rider", "fiend-red-rider", "fiend-black-rider"]
+		},
 
-    { "id": "story-yoyogi-park-revisited", "title": "Yoyogi Park revisited", "kind": "story", "available": false, "done": false, "verified": false, "notes": "Bosses: Girimehkala and Sakahagi, then Specter in Asakusa. Black Frost (Kabukicho Prison) and Mother Harlot (Yoyogi Park) can be fought in this chapter. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Ending choice at the end of the chapter, after the Yahiro no Himorogi: Yuko (Aradia) asks two questions. \"I can take it.\" to both leads to Freedom; \"...I'm terrified.\" to both leads to the Demon ending (Tranquility). Make a backup save before this scene (RPG Site, Game8, Samurai Gamers).", "requires": ["story-amala-network-revisited"] },
-    { "id": "hs-yuko", "title": "Hard save: before Yuko's questions", "kind": "hardsave", "available": false, "done": false, "verified": false, "requires": ["story-amala-network-revisited"], "notes": "At the end of Yoyogi Park revisited, after the Yahiro no Himorogi and before Yuko (Aradia) asks her two questions. Branch: answer \"...I'm terrified.\" twice for the Demon ending (Tranquility). Main line: answer \"I can take it.\" twice. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)", "choice": "Then, on your main save: answer \"I can take it.\" twice and keep playing." },
-    { "id": "fiend-mother-harlot", "title": "Fiend: Mother Harlot", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "North part of the West Plaza in Yoyogi Park, after Girimehkala and Sakahagi and once all four Riders are defeated (Game8, Samurai Gamers). She reflects physical attacks: bring magic. Drops the Candelabrum (Menorah) of Beauty, needed for Kalpa 4.", "requires": ["fiend-white-rider", "fiend-red-rider", "fiend-black-rider", "fiend-pale-rider"] },
-    { "id": "side-black-frost", "title": "Black Frost (Kabukicho Prison)", "kind": "side", "recommendedLevel": 40, "available": false, "done": false, "verified": false, "magatama": "Satan", "notes": "Opens: during the Yoyogi Park revisit chapter (Samurai Gamers). Fight him on Kabukicho Prison 5F, in the room where you fought Mizuchi. Recommended level: 40+ per Samurai Gamers, 70+ per Game8. Reward: Satan Magatama (Deadly Fury, a build target).", "requires": ["story-amala-network-revisited"] },
+		{
+			"id": "story-yoyogi-park-revisited",
+			"title": "Yoyogi Park revisited",
+			"kind": "story",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Bosses: Girimehkala and Sakahagi, then Specter in Asakusa. Black Frost (Kabukicho Prison) and Mother Harlot (Yoyogi Park) can be fought in this chapter. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Ending choice at the end of the chapter, after the Yahiro no Himorogi: Yuko (Aradia) asks two questions. \"I can take it.\" to both leads to Freedom; \"...I'm terrified.\" to both leads to the Demon ending (Tranquility). Make a backup save before this scene (RPG Site, Game8, Samurai Gamers).",
+			"requires": ["story-amala-network-revisited"]
+		},
+		{
+			"id": "hs-yuko",
+			"title": "Hard save: before Yuko's questions",
+			"kind": "hardsave",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"requires": ["story-amala-network-revisited"],
+			"notes": "At the end of Yoyogi Park revisited, after the Yahiro no Himorogi and before Yuko (Aradia) asks her two questions. Branch: answer \"...I'm terrified.\" twice for the Demon ending (Tranquility). Main line: answer \"I can take it.\" twice. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)",
+			"choice": "Then, on your main save: answer \"I can take it.\" twice and keep playing."
+		},
+		{
+			"id": "fiend-mother-harlot",
+			"title": "Fiend: Mother Harlot",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "North part of the West Plaza in Yoyogi Park, after Girimehkala and Sakahagi and once all four Riders are defeated (Game8, Samurai Gamers). She reflects physical attacks: bring magic. Drops the Candelabrum (Menorah) of Beauty, needed for Kalpa 4.",
+			"requires": [
+				"fiend-white-rider",
+				"fiend-red-rider",
+				"fiend-black-rider",
+				"fiend-pale-rider"
+			]
+		},
+		{
+			"id": "side-black-frost",
+			"title": "Black Frost (Kabukicho Prison)",
+			"kind": "side",
+			"recommendedLevel": 40,
+			"available": false,
+			"done": false,
+			"verified": false,
+			"magatama": "Satan",
+			"notes": "Opens: during the Yoyogi Park revisit chapter (Samurai Gamers). Fight him on Kabukicho Prison 5F, in the room where you fought Mizuchi. Recommended level: 40+ per Samurai Gamers, 70+ per Game8. Reward: Satan Magatama (Deadly Fury, a build target).",
+			"requires": ["story-amala-network-revisited"]
+		},
 
-    { "id": "story-amala-temple", "title": "Amala Temple", "kind": "story", "available": false, "done": false, "verified": false, "notes": "Bosses: Alciel (Black Temple), Albion and his four minions (White Temple, gives Adama), Skadi (Red Temple). (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Reason flag: Musubi 2/2 (agree with Isamu: \"All right\") per Game8; Samurai Gamers lists Musubi's second flag at the Mifunashiro Hall of Mirrors. Second flags lock you into that Reason, so save before (RPG Site).", "requires": ["story-yoyogi-park-revisited"], "magatama": "Adama" },
-    { "id": "hs-isamu", "title": "Hard save: before Isamu's question in Amala Temple", "kind": "hardsave", "available": false, "done": false, "verified": false, "requires": ["story-yoyogi-park-revisited"], "notes": "Before Isamu's second Musubi question in Amala Temple (Game8; Samurai Gamers puts it at the Mifunashiro Hall of Mirrors, so the next save covers that too). Branch: agree (\"All right\") for Musubi. Main line: refuse. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)", "choice": "Then, on your main save: refuse Isamu and keep playing." },
+		{
+			"id": "story-amala-temple",
+			"title": "Amala Temple",
+			"kind": "story",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Bosses: Alciel (Black Temple), Albion and his four minions (White Temple, gives Adama), Skadi (Red Temple). (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Reason flag: Musubi 2/2 (agree with Isamu: \"All right\") per Game8; Samurai Gamers lists Musubi's second flag at the Mifunashiro Hall of Mirrors. Second flags lock you into that Reason, so save before (RPG Site).",
+			"requires": ["story-yoyogi-park-revisited"],
+			"magatama": "Adama"
+		},
+		{
+			"id": "hs-isamu",
+			"title": "Hard save: before Isamu's question in Amala Temple",
+			"kind": "hardsave",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"requires": ["story-yoyogi-park-revisited"],
+			"notes": "Before Isamu's second Musubi question in Amala Temple (Game8; Samurai Gamers puts it at the Mifunashiro Hall of Mirrors, so the next save covers that too). Branch: agree (\"All right\") for Musubi. Main line: refuse. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)",
+			"choice": "Then, on your main save: refuse Isamu and keep playing."
+		},
 
-    { "id": "story-mifunashiro-yurakucho", "title": "Mifunashiro and Yurakucho Station", "kind": "story", "available": false, "done": false, "verified": false, "notes": "Boss: Futomimi if you raised the Yosuga Reason, otherwise Gabriel, Uriel and Raphael. After the birth of Yosuga, Yurakucho Station opens: Trumpeter waits near the barrier gate and Shige digs in the tunnel. Game8 recommends level 75+ for this chapter. Reason flag: Yosuga 2/2 (agree with Chiaki in the Hall of Mirrors: \"I see your point\"). Second flags lock you into that Reason, so save before (Game8, Samurai Gamers, RPG Site).", "requires": ["story-amala-temple"] },
-    { "id": "hs-chiaki", "title": "Hard save: before the Hall of Mirrors in Mifunashiro", "kind": "hardsave", "available": false, "done": false, "verified": false, "requires": ["story-amala-temple"], "notes": "Before Chiaki's second Yosuga question in the Mifunashiro Hall of Mirrors. Branch: agree (\"I see your point\") for Yosuga. Main line: refuse. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)", "choice": "Then, on your main save: refuse Chiaki and keep playing." },
-    { "id": "fiend-trumpeter", "title": "Fiend: Trumpeter", "kind": "fiend", "available": false, "done": false, "verified": false, "notes": "Yurakucho Station near the barrier gate, once the other Candelabrum bearers are defeated (Game8, Samurai Gamers). Drops the Candelabrum of Godliness (Samurai Gamers; Game8 calls it the Menorah of Glory), needed for Kalpa 4.", "requires": ["story-amala-temple"] },
-    { "id": "side-yurakucho-miner", "title": "Shige, the Kimon Stone and Bishamonten", "kind": "side", "available": false, "done": false, "verified": false, "magatama": "Gundari", "notes": "Opens: once Yurakucho Station opens (after the birth of Yosuga). Lend Shige, the spirit digging in the Yurakucho Tunnel, a demon (it dies); after at least 7 Kagutsuchi cycles (fewer with a stronger demon) he gives you the Kimon Stone. It opens the sealed temple just north of Asakusa (Temple of Ueno), where Bishamonten gives the Gundari Magatama. He is weak to ice (Game8, Samurai Gamers).", "requires": ["story-amala-temple"] },
-    { "id": "kalpa-4", "title": "Labyrinth of Amala: Kalpa 4", "kind": "labyrinth", "available": false, "done": false, "verified": true, "notes": "Needs the Candelabra of Knowledge, Majesty, Beauty and Godliness (Raidou/Dante, Pale Rider, Mother Harlot, Trumpeter). Beelzebub is the boss. Beelzebub waits in the northern room of Hell's Hall, reached through the 12 Meters of Eternity during a new Kagutsuchi; beating him lets you collect the Star Key.", "requires": ["kalpa-3", "fiend-raidou-dante", "fiend-pale-rider", "fiend-mother-harlot", "fiend-trumpeter"], "recommendedLevel": 65 },
-    { "id": "side-hells-vault", "title": "Hell's Vault (Kalpa 4)", "kind": "side", "available": false, "done": false, "verified": false, "notes": "Secret area in Kalpa 4, through a portal on B1F during a half or full Kagutsuchi (check again before the second portal). Mystical Chests, and a treasure room guarded by an Old Man: wait at least three minutes before answering him. Inside: a Deathstone and 100,001 Macca. Entering the Tower of Kagutsuchi locks you out of it (Samurai Gamers).", "requires": ["kalpa-3"] },
+		{
+			"id": "story-mifunashiro-yurakucho",
+			"title": "Mifunashiro and Yurakucho Station",
+			"kind": "story",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Boss: Futomimi if you raised the Yosuga Reason, otherwise Gabriel, Uriel and Raphael. After the birth of Yosuga, Yurakucho Station opens: Trumpeter waits near the barrier gate and Shige digs in the tunnel. Game8 recommends level 75+ for this chapter. Reason flag: Yosuga 2/2 (agree with Chiaki in the Hall of Mirrors: \"I see your point\"). Second flags lock you into that Reason, so save before (Game8, Samurai Gamers, RPG Site).",
+			"requires": ["story-amala-temple"]
+		},
+		{
+			"id": "hs-chiaki",
+			"title": "Hard save: before the Hall of Mirrors in Mifunashiro",
+			"kind": "hardsave",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"requires": ["story-amala-temple"],
+			"notes": "Before Chiaki's second Yosuga question in the Mifunashiro Hall of Mirrors. Branch: agree (\"I see your point\") for Yosuga. Main line: refuse. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)",
+			"choice": "Then, on your main save: refuse Chiaki and keep playing."
+		},
+		{
+			"id": "fiend-trumpeter",
+			"title": "Fiend: Trumpeter",
+			"kind": "fiend",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Yurakucho Station near the barrier gate, once the other Candelabrum bearers are defeated (Game8, Samurai Gamers). Drops the Candelabrum of Godliness (Samurai Gamers; Game8 calls it the Menorah of Glory), needed for Kalpa 4.",
+			"requires": ["story-amala-temple"]
+		},
+		{
+			"id": "side-yurakucho-miner",
+			"title": "Shige, the Kimon Stone and Bishamonten",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"magatama": "Gundari",
+			"notes": "Opens: once Yurakucho Station opens (after the birth of Yosuga). Lend Shige, the spirit digging in the Yurakucho Tunnel, a demon (it dies); after at least 7 Kagutsuchi cycles (fewer with a stronger demon) he gives you the Kimon Stone. It opens the sealed temple just north of Asakusa (Temple of Ueno), where Bishamonten gives the Gundari Magatama. He is weak to ice (Game8, Samurai Gamers).",
+			"requires": ["story-amala-temple"]
+		},
+		{
+			"id": "kalpa-4",
+			"title": "Labyrinth of Amala: Kalpa 4",
+			"kind": "labyrinth",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "Needs the Candelabra of Knowledge, Majesty, Beauty and Godliness (Raidou/Dante, Pale Rider, Mother Harlot, Trumpeter). Beelzebub is the boss. Beelzebub waits in the northern room of Hell's Hall, reached through the 12 Meters of Eternity during a new Kagutsuchi; beating him lets you collect the Star Key.",
+			"requires": [
+				"kalpa-3",
+				"fiend-raidou-dante",
+				"fiend-pale-rider",
+				"fiend-mother-harlot",
+				"fiend-trumpeter"
+			],
+			"recommendedLevel": 65
+		},
+		{
+			"id": "side-hells-vault",
+			"title": "Hell's Vault (Kalpa 4)",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Secret area in Kalpa 4, through a portal on B1F during a half or full Kagutsuchi (check again before the second portal). Mystical Chests, and a treasure room guarded by an Old Man: wait at least three minutes before answering him. Inside: a Deathstone and 100,001 Macca. Entering the Tower of Kagutsuchi locks you out of it (Samurai Gamers).",
+			"requires": ["kalpa-3"]
+		},
 
-    { "id": "story-tokyo-diet-building", "title": "Tokyo Diet Building", "kind": "story", "available": false, "done": false, "verified": false, "notes": "Bosses: Surt, Mada, Mot, Mithra, and Samael if you chose to stop Hikawa. Good moment to clear Kalpa 5 before going on: entering the Tower first locks the Labyrinth for this playthrough. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Choices here: Shijima 2/2 (don't stop Hikawa: \"Fine by me\"). For Freedom, defy Hikawa (\"Can't do that.\") and don't admit to Mithra that you are a demon; for the Demon ending, admit it. Save before this scene (Game8, Samurai Gamers, RPG Site).", "requires": ["story-mifunashiro-yurakucho"] },
-    { "id": "hs2", "title": "Hard save: before Hikawa at the Diet Building", "kind": "hardsave", "available": false, "done": false, "verified": false, "requires": ["story-mifunashiro-yurakucho"], "notes": "Before Hikawa's question at the Tokyo Diet Building. Branch: don't stop him (\"Fine by me\") for Shijima. Main line: defy him (\"Can't do that.\") and don't admit to Mithra that you are a demon, which keeps Freedom. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)", "choice": "Then, on your main save: defy Hikawa (\"Can't do that.\") and keep playing." },
-    { "id": "side-raidou", "title": "Recruit Raidou (Chronicle DLC)", "kind": "side", "available": false, "done": false, "verified": false, "notes": "Only with the Chronicle DLC pack: when you enter Kalpa 5, Raidou and Gotou offer to join you. Accept, then pick the left mahjong tile for 100,000 Macca (Game8). Dante is the Maniax DLC equivalent.", "requires": ["kalpa-4"] },
-    { "id": "hs1", "title": "Hard save: before Metatron in Kalpa 5", "kind": "hardsave", "available": false, "done": false, "verified": false, "requires": ["kalpa-4", "hs2"], "notes": "After the Diet Building choice, before beating Metatron at the end of Kalpa 5. Branch: beat Metatron, finish the Labyrinth and go to the Tower for the True Demon ending. Main line: reload this save, leave Kalpa 5 unfinished and go to the Tower for Freedom. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)", "choice": "Then, on your main save: beat Metatron and finish the game (True Demon)." },
-    { "id": "kalpa-5", "title": "Labyrinth of Amala: Kalpa 5", "kind": "labyrinth", "available": false, "done": false, "verified": true, "notes": "Needs the Candelabrum of Sovereignty (from the Lady in Black) and the Star Key (Collector Manikin in Asakusa, after Beelzebub). Metatron is the last boss: make the hard save before him. Beating him completes the Labyrinth, which locks you into True Demon once you enter the Tower.", "requires": ["kalpa-4"], "recommendedLevel": 75 },
-    { "id": "side-bandou-shrine", "title": "Bandou Shrine: Masakados", "kind": "side", "available": false, "done": false, "verified": false, "magatama": "Masakados", "notes": "Opens: once you own the other 24 Magatama; the last is Kailash from the Junk Shop on the Tower of Kagutsuchi's third level, so enter the Tower, buy it and come back (on the main line, after the save before Metatron). The minister at the Cathedral of Shadows gives you the Lord's Sword; warp to the Assembly of Nihilo (Marunouchi) and present it at Masakados' Grave, northeast of the Tower. Inside, lower four pillars to fight Zouchouten, Jikokuten, Koumokuten and Bishamonten (Game8 recommends level 95+ for him), then speak to Masakados. Reward: Masakados Magatama (Game8, Samurai Gamers).", "requires": ["hs1"], "recommendedLevel": 95 },
+		{
+			"id": "story-tokyo-diet-building",
+			"title": "Tokyo Diet Building",
+			"kind": "story",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Bosses: Surt, Mada, Mot, Mithra, and Samael if you chose to stop Hikawa. Good moment to clear Kalpa 5 before going on: entering the Tower first locks the Labyrinth for this playthrough. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Choices here: Shijima 2/2 (don't stop Hikawa: \"Fine by me\"). For Freedom, defy Hikawa (\"Can't do that.\") and don't admit to Mithra that you are a demon; for the Demon ending, admit it. Save before this scene (Game8, Samurai Gamers, RPG Site).",
+			"requires": ["story-mifunashiro-yurakucho"]
+		},
+		{
+			"id": "hs2",
+			"title": "Hard save: before Hikawa at the Diet Building",
+			"kind": "hardsave",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"requires": ["story-mifunashiro-yurakucho"],
+			"notes": "Before Hikawa's question at the Tokyo Diet Building. Branch: don't stop him (\"Fine by me\") for Shijima. Main line: defy him (\"Can't do that.\") and don't admit to Mithra that you are a demon, which keeps Freedom. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)",
+			"choice": "Then, on your main save: defy Hikawa (\"Can't do that.\") and keep playing."
+		},
+		{
+			"id": "side-raidou",
+			"title": "Recruit Raidou (Chronicle DLC)",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"notes": "Only with the Chronicle DLC pack: when you enter Kalpa 5, Raidou and Gotou offer to join you. Accept, then pick the left mahjong tile for 100,000 Macca (Game8). Dante is the Maniax DLC equivalent.",
+			"requires": ["kalpa-4"]
+		},
+		{
+			"id": "hs1",
+			"title": "Hard save: before Metatron in Kalpa 5",
+			"kind": "hardsave",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"requires": ["kalpa-4", "hs2"],
+			"notes": "After the Diet Building choice, before beating Metatron at the end of Kalpa 5. Branch: beat Metatron, finish the Labyrinth and go to the Tower for the True Demon ending. Main line: reload this save, leave Kalpa 5 unfinished and go to the Tower for Freedom. Use a new save slot and never overwrite it. (Game8, Samurai Gamers, RPG Site)",
+			"choice": "Then, on your main save: beat Metatron and finish the game (True Demon)."
+		},
+		{
+			"id": "kalpa-5",
+			"title": "Labyrinth of Amala: Kalpa 5",
+			"kind": "labyrinth",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "Needs the Candelabrum of Sovereignty (from the Lady in Black) and the Star Key (Collector Manikin in Asakusa, after Beelzebub). Metatron is the last boss: make the hard save before him. Beating him completes the Labyrinth, which locks you into True Demon once you enter the Tower.",
+			"requires": ["kalpa-4"],
+			"recommendedLevel": 75
+		},
+		{
+			"id": "side-bandou-shrine",
+			"title": "Bandou Shrine: Masakados",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"magatama": "Masakados",
+			"notes": "Opens: once you own the other 24 Magatama; the last is Kailash from the Junk Shop on the Tower of Kagutsuchi's third level, so enter the Tower, buy it and come back (on the main line, after the save before Metatron). The minister at the Cathedral of Shadows gives you the Lord's Sword; warp to the Assembly of Nihilo (Marunouchi) and present it at Masakados' Grave, northeast of the Tower. Inside, lower four pillars to fight Zouchouten, Jikokuten, Koumokuten and Bishamonten (Game8 recommends level 95+ for him), then speak to Masakados. Reward: Masakados Magatama (Game8, Samurai Gamers).",
+			"requires": ["hs1"],
+			"recommendedLevel": 95
+		},
 
-    { "id": "tower-of-kagutsuchi", "title": "Obelisk revisited and Tower of Kagutsuchi", "kind": "story", "available": false, "done": false, "verified": true, "requires": ["hs1"], "notes": "Main line (Freedom): reload the hard save before Metatron, leave Kalpa 5 unfinished, and go to the Obelisk and the Tower; entering it locks the Labyrinth. Bosses: Ahriman (unless you raised Shijima), Noah (unless you raised Musubi), Thor, Baal Avatar, Kagutsuchi. The Junk Shop on the Tower's third level sells Kailash (Freikugel) (Samurai Gamers, Game8)." },
+		{
+			"id": "tower-of-kagutsuchi",
+			"title": "Obelisk revisited and Tower of Kagutsuchi",
+			"kind": "story",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"requires": ["hs1"],
+			"notes": "Main line (Freedom): reload the hard save before Metatron, leave Kalpa 5 unfinished, and go to the Obelisk and the Tower; entering it locks the Labyrinth. Bosses: Ahriman (unless you raised Shijima), Noah (unless you raised Musubi), Thor, Baal Avatar, Kagutsuchi. The Junk Shop on the Tower's third level sells Kailash (Freikugel) (Samurai Gamers, Game8)."
+		},
 
-    { "id": "ending-true-demon", "title": "True Demon ending", "kind": "ending", "available": false, "done": false, "verified": true, "requires": ["hs1"], "notes": "From the hard save before Metatron: beat him to finish all five Kalpas, then enter the Tower, beat Kagutsuchi and Lucifer. Reason flags don't matter (Game8, Samurai Gamers, RPG Site).", "choice": "Your first ending: beat Metatron, enter the Tower and finish the game." },
-    { "id": "ending-freedom", "title": "Freedom ending", "kind": "ending", "available": false, "done": false, "verified": false, "requires": ["hs1"], "notes": "Reject all three Reasons (or take the second flag of two or more). At the end of Yoyogi Park revisited answer Yuko \"I can take it.\" twice, and at the Diet Building defy Hikawa (\"Can't do that.\") / don't admit to Mithra that you are a demon. Labyrinth not completed. This is the main line: from the hard save before Metatron, leave Kalpa 5 unfinished and go to the Tower (Game8, Samurai Gamers, RPG Site).", "choice": "Load the save before Metatron, skip him, go to the Tower and finish." },
-    { "id": "ending-shijima", "title": "Shijima ending", "kind": "ending", "available": false, "done": false, "verified": true, "requires": ["hs2"], "notes": "From the hard save before Hikawa: let him go on (\"Fine by me\"), keep the earlier flags (Shijima 1/2 at Mantra HQ), then beat Noah and Baal Avatar in the Tower and the final boss. Labyrinth not completed (Game8, Samurai Gamers).", "choice": "Load the save before Hikawa, answer \"Fine by me\" and finish." },
-    { "id": "ending-yosuga", "title": "Yosuga ending", "kind": "ending", "available": false, "done": false, "verified": true, "requires": ["hs-chiaki"], "notes": "From the hard save before the Hall of Mirrors: agree with Chiaki (Yosuga 2/2; 1/2 was at Mantra HQ), defeat Futomimi, then finish the Tower. Labyrinth not completed (Game8, Samurai Gamers).", "choice": "Load the save before the Hall of Mirrors, agree with Chiaki and finish." },
-    { "id": "ending-musubi", "title": "Musubi ending", "kind": "ending", "available": false, "done": false, "verified": true, "requires": ["hs-isamu"], "notes": "From the hard save before Isamu's question: agree with him (Musubi 2/2; Musubi 1/2 was at Amala Network revisited), then beat Ahriman and Baal Avatar in the Tower and the final boss. Labyrinth not completed (Game8, Samurai Gamers).", "choice": "Load the save before Isamu, agree with him and finish." },
-    { "id": "ending-tranquility", "title": "Tranquility ending", "kind": "ending", "available": false, "done": false, "verified": false, "requires": ["hs-yuko"], "notes": "Called the Demon ending (Game8, Samurai Gamers) or Neutral (RPG Site). Reject all three Reasons, answer Yuko \"...I'm terrified.\" twice at the end of Yoyogi Park revisited, admit to Mithra that you are a demon at the Diet Building, and don't complete the Labyrinth. It skips the final boss. Branch from the hard save before Yuko's questions, then play to the end refusing every Reason.", "choice": "Load the save before Yuko, answer \"...I'm terrified.\" twice and finish." }
-  ],
-  "saveSlots": [],
-  "endingsSeen": []
+		{
+			"id": "ending-true-demon",
+			"title": "True Demon ending",
+			"kind": "ending",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"requires": ["hs1"],
+			"notes": "From the hard save before Metatron: beat him to finish all five Kalpas, then enter the Tower, beat Kagutsuchi and Lucifer. Reason flags don't matter (Game8, Samurai Gamers, RPG Site).",
+			"choice": "Your first ending: beat Metatron, enter the Tower and finish the game."
+		},
+		{
+			"id": "ending-freedom",
+			"title": "Freedom ending",
+			"kind": "ending",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"requires": ["hs1"],
+			"notes": "Reject all three Reasons (or take the second flag of two or more). At the end of Yoyogi Park revisited answer Yuko \"I can take it.\" twice, and at the Diet Building defy Hikawa (\"Can't do that.\") / don't admit to Mithra that you are a demon. Labyrinth not completed. This is the main line: from the hard save before Metatron, leave Kalpa 5 unfinished and go to the Tower (Game8, Samurai Gamers, RPG Site).",
+			"choice": "Load the save before Metatron, skip him, go to the Tower and finish."
+		},
+		{
+			"id": "ending-shijima",
+			"title": "Shijima ending",
+			"kind": "ending",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"requires": ["hs2"],
+			"notes": "From the hard save before Hikawa: let him go on (\"Fine by me\"), keep the earlier flags (Shijima 1/2 at Mantra HQ), then beat Noah and Baal Avatar in the Tower and the final boss. Labyrinth not completed (Game8, Samurai Gamers).",
+			"choice": "Load the save before Hikawa, answer \"Fine by me\" and finish."
+		},
+		{
+			"id": "ending-yosuga",
+			"title": "Yosuga ending",
+			"kind": "ending",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"requires": ["hs-chiaki"],
+			"notes": "From the hard save before the Hall of Mirrors: agree with Chiaki (Yosuga 2/2; 1/2 was at Mantra HQ), defeat Futomimi, then finish the Tower. Labyrinth not completed (Game8, Samurai Gamers).",
+			"choice": "Load the save before the Hall of Mirrors, agree with Chiaki and finish."
+		},
+		{
+			"id": "ending-musubi",
+			"title": "Musubi ending",
+			"kind": "ending",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"requires": ["hs-isamu"],
+			"notes": "From the hard save before Isamu's question: agree with him (Musubi 2/2; Musubi 1/2 was at Amala Network revisited), then beat Ahriman and Baal Avatar in the Tower and the final boss. Labyrinth not completed (Game8, Samurai Gamers).",
+			"choice": "Load the save before Isamu, agree with him and finish."
+		},
+		{
+			"id": "ending-tranquility",
+			"title": "Tranquility ending",
+			"kind": "ending",
+			"available": false,
+			"done": false,
+			"verified": false,
+			"requires": ["hs-yuko"],
+			"notes": "Called the Demon ending (Game8, Samurai Gamers) or Neutral (RPG Site). Reject all three Reasons, answer Yuko \"...I'm terrified.\" twice at the end of Yoyogi Park revisited, admit to Mithra that you are a demon at the Diet Building, and don't complete the Labyrinth. It skips the final boss. Branch from the hard save before Yuko's questions, then play to the end refusing every Reason.",
+			"choice": "Load the save before Yuko, answer \"...I'm terrified.\" twice and finish."
+		}
+	],
+	"saveSlots": [],
+	"endingsSeen": []
 }

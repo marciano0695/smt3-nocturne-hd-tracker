@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { LevelUpActions } from './components/demifiend';
 import { Icon, type IconName } from './components/Icon';
 import { ToastHost } from './components/ui';
 import { BuildPage } from './pages/BuildPage';
@@ -7,6 +8,7 @@ import { DemiFiendPage } from './pages/DemiFiendPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { StoryPage } from './pages/StoryPage';
 import { ROUTES, useRoute, type Route } from './state/router';
+import { upcomingTargets } from './game/scheduler';
 import { StoreProvider, useStore } from './state/store';
 
 const ICONS: Record<Route, IconName> = {
@@ -25,21 +27,57 @@ const PAGES: Record<Route, () => React.JSX.Element> = {
   settings: SettingsPage,
 };
 
+function NavLink({ route, href, label }: (typeof ROUTES)[number]) {
+  const current = useRoute();
+  return (
+    <a href={href} aria-current={current === route ? 'page' : undefined}>
+      <Icon name={ICONS[route]} size={20} />
+      <span>{label}</span>
+    </a>
+  );
+}
+
+// On phones Level up sits in the middle of the tab bar and Settings moves to the top bar.
 function Nav() {
-  const route = useRoute();
   return (
     <nav className="nav" aria-label="Main">
       <ul>
-        {ROUTES.map((r) => (
+        {ROUTES.slice(0, 2).map((r) => (
           <li key={r.route}>
-            <a href={r.href} aria-current={route === r.route ? 'page' : undefined}>
-              <Icon name={ICONS[r.route]} size={20} />
-              <span>{r.label}</span>
-            </a>
+            <NavLink {...r} />
+          </li>
+        ))}
+        <li className="nav-levelup">
+          <LevelUpActions layout="tab" />
+        </li>
+        {ROUTES.slice(2).map((r) => (
+          <li key={r.route} className={r.route === 'settings' ? 'nav-settings' : undefined}>
+            <NavLink {...r} />
           </li>
         ))}
       </ul>
     </nav>
+  );
+}
+
+/** Level, equipped Magatama and the next target skill, on every page. */
+function StatusStrip() {
+  const { state, plan } = useStore();
+  const next = upcomingTargets(plan, state.build.target)[0];
+  return (
+    <p className="status">
+      <span className="status-level num">Lv {state.level}</span>
+      <span className="status-item">{state.equipped ?? 'No Magatama equipped'}</span>
+      <span className="status-item status-target">
+        {next ? (
+          <>
+            Next target: <strong>{next.skill}</strong> at <span className="num">{next.level}</span>
+          </>
+        ) : (
+          'No target skill scheduled'
+        )}
+      </span>
+    </p>
   );
 }
 
@@ -63,7 +101,6 @@ function Notices() {
 
 function Shell() {
   const route = useRoute();
-  const { state } = useStore();
   const Page = PAGES[route];
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -77,7 +114,18 @@ function Shell() {
           <Icon name="orb" size={22} />
           <span>Nocturne Tracker</span>
         </a>
-        <span className="topbar-level num">Lv {state.level}</span>
+        <a
+          className="topbar-settings icon-btn"
+          href="#/settings"
+          aria-label="Settings"
+          aria-current={route === 'settings' ? 'page' : undefined}
+        >
+          <Icon name="settings" size={20} />
+        </a>
+        <StatusStrip />
+        <div className="rail-levelup">
+          <LevelUpActions layout="rail" />
+        </div>
         <Nav />
       </header>
       <main className="main" id="main">

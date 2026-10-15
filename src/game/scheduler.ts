@@ -216,6 +216,16 @@ export function schedule(
   return plan;
 }
 
+/** The planned level-ups that learn a target skill, soonest first. */
+export function upcomingTargets(plan: PlanStep[], target: readonly string[]): PlanStep[] {
+  return plan.filter((s) => s.action === 'learn' && s.skill !== null && target.includes(s.skill));
+}
+
+/** The planned level-up that overwrites `skill`, if any. */
+export function replacedAt(plan: PlanStep[], skill: string): PlanStep | undefined {
+  return plan.find((s) => s.action === 'learn' && s.replaces === skill);
+}
+
 /** Owned Magatama that can teach something at the next level-up, best first, as `schedule` ranks them. */
 export function rankCandidates(state: PlayerState, data: GameData): Candidate[] {
   return rank(startSim(state, data), state.build, data, state.level + 1);

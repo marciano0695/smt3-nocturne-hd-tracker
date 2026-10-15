@@ -1,6 +1,12 @@
 import { describe, expect, it } from 'vite-plus/test';
 import { createGameData } from '../src/game/data';
-import { completionLevel, rankCandidates, schedule } from '../src/game/scheduler';
+import {
+  completionLevel,
+  rankCandidates,
+  replacedAt,
+  schedule,
+  upcomingTargets,
+} from '../src/game/scheduler';
 import type { PlanStep, PlayerState, SkillData } from '../src/game/types';
 import { fixture22, gameData, newGameSeed } from './helpers';
 
@@ -474,5 +480,25 @@ describe('options and inputs', () => {
       expect(() => rankCandidates(state, gameData)).not.toThrow();
       expect(state).toEqual(before);
     }
+  });
+});
+
+describe('plan summaries', () => {
+  const state = fixture22();
+  const plan = schedule(state, gameData);
+
+  it('lists target learns soonest first, starting with Focus at 23', () => {
+    const targets = upcomingTargets(plan, state.build.target).map((s) => [s.level, s.skill]);
+    expect(targets.slice(0, 3)).toEqual([
+      [23, 'Focus'],
+      [26, 'War Cry'],
+      [29, 'Might'],
+    ]);
+  });
+
+  it('finds the level-up that overwrites a current skill', () => {
+    expect(replacedAt(plan, 'Ice Breath')?.level).toBe(23);
+    expect(replacedAt(plan, 'Analyze')?.skill).toBe('War Cry');
+    expect(replacedAt(plan, 'Not A Skill')).toBeUndefined();
   });
 });

@@ -1,9 +1,10 @@
 import {
-  LevelUpActions,
   MagatamaList,
   ScheduleTable,
+  ScheduleTimeline,
   SkillSlots,
   StatPlan,
+  UndoLevelUpButton,
   WindowsTable,
 } from '../components/demifiend';
 import { PageHeader, Section, Tag } from '../components/ui';
@@ -43,7 +44,7 @@ export function DemiFiendPage() {
   return (
     <div className="page">
       <PageHeader title="Demi-fiend">
-        <LevelUpActions />
+        <UndoLevelUpButton />
       </PageHeader>
       <Section title="Current state" actions={<a href="#/settings">Edit current save</a>}>
         <CurrentState />
@@ -53,6 +54,7 @@ export function DemiFiendPage() {
         title="Skill schedule"
         description="Which Magatama to equip at each level-up, from the build plan."
       >
+        <ScheduleTimeline />
         <ScheduleTable limit={14} />
       </Section>
       <Section

@@ -1,3 +1,13 @@
+/* Archivo (SIL Open Font License), latin subset with width and weight axes. */
+@font-face {
+  font-family: 'Archivo';
+  font-style: normal;
+  font-weight: 400 800;
+  font-stretch: 62% 125%;
+  font-display: swap;
+  src: url('../assets/fonts/archivo-latin.woff2') format('woff2');
+}
+
 *,
 *::before,
 *::after {
@@ -31,14 +41,16 @@ h4 {
 }
 
 h1 {
-  font-family: var(--font-serif);
-  font-size: var(--text-xl);
-  font-weight: 600;
+  font-stretch: var(--stretch-display);
+  font-size: var(--text-2xl);
+  font-weight: 700;
+  letter-spacing: 0.005em;
 }
 
 h2 {
   font-size: var(--text-lg);
   font-weight: 650;
+  letter-spacing: 0.005em;
 }
 
 h3 {
