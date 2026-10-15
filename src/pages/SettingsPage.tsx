@@ -1,6 +1,15 @@
 import { useRef, useState } from 'react';
 import { RemoveMagatamaButton } from '../components/demifiend';
-import { Button, ConfirmDialog, Dialog, Field, PageHeader, Section, Tag } from '../components/ui';
+import {
+  Button,
+  ConfirmDialog,
+  Dialog,
+  Field,
+  NumberInput,
+  PageHeader,
+  Section,
+  Tag,
+} from '../components/ui';
 import { ownedInDataOrder } from '../game/data';
 import {
   BACKUP_KEY,
@@ -200,24 +209,20 @@ function EditSave() {
     >
       <div className="edit-grid">
         <Field label="Level">
-          <input
-            type="number"
-            inputMode="numeric"
+          <NumberInput
             min={1}
             max={data.rules.maxLevel}
             value={draft.level}
-            onChange={(e) => setDraft({ ...draft, level: Number(e.target.value) })}
+            onValueChange={(level) => level !== null && setDraft({ ...draft, level })}
           />
         </Field>
         {STATS.map((s) => (
           <Field key={s} label={s}>
-            <input
-              type="number"
-              inputMode="numeric"
+            <NumberInput
               min={0}
               value={draft.stats[s]}
-              onChange={(e) =>
-                setDraft({ ...draft, stats: { ...draft.stats, [s]: Number(e.target.value) } })
+              onValueChange={(v) =>
+                v !== null && setDraft({ ...draft, stats: { ...draft.stats, [s]: v } })
               }
             />
           </Field>

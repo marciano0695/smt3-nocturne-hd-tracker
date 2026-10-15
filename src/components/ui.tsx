@@ -4,6 +4,7 @@ import {
   useRef,
   useState,
   type ButtonHTMLAttributes,
+  type InputHTMLAttributes,
   type ReactNode,
 } from 'react';
 import { useOpenState } from '../state/disclosure';
@@ -333,6 +334,55 @@ export function Field({
       {children}
       {hint && <span className="field-hint">{hint}</span>}
     </label>
+  );
+}
+
+/** Text typed into a number field: leading zeros dropped, empty or invalid input is null. */
+export function cleanNumberText(raw: string): { text: string; value: number | null } {
+  const text = raw.replace(/^(-?)0+(?=\d)/, '$1');
+  const value = text.trim() === '' ? null : Number(text);
+  return { text, value: value === null || Number.isFinite(value) ? value : null };
+}
+
+type NumberInputProps = Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  'type' | 'value' | 'onChange'
+> & {
+  value: number | null;
+  /** null while the field is empty; callers clamp and decide what an empty field means. */
+  onValueChange: (value: number | null) => void;
+};
+
+/**
+ * A number field that keeps what is being typed. A plain controlled number input turns a
+ * cleared field into 0, and React then leaves "023" on screen because it equals 23.
+ */
+export function NumberInput({ value, onValueChange, onBlur, ...props }: NumberInputProps) {
+  const show = (v: number | null) => (v === null ? '' : String(v));
+  const [text, setText] = useState(() => show(value));
+  const [shown, setShown] = useState(value);
+  // Follow changes from outside (save, discard, clamping) without clobbering the typing.
+  if (value !== shown) {
+    setShown(value);
+    if (cleanNumberText(text).value !== value) setText(show(value));
+  }
+  return (
+    <input
+      {...props}
+      type="number"
+      inputMode={props.inputMode ?? 'numeric'}
+      value={text}
+      onChange={(e) => {
+        const next = cleanNumberText(e.target.value);
+        setText(next.text);
+        onValueChange(next.value);
+      }}
+      onBlur={(e) => {
+        // An empty or out-of-range entry snaps back to the value actually kept.
+        setText(show(value));
+        onBlur?.(e);
+      }}
+    />
   );
 }
 

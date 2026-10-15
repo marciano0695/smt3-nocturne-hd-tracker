@@ -6,6 +6,7 @@ import {
   Button,
   Empty,
   Field,
+  NumberInput,
   PageHeader,
   Section,
   Tag,
@@ -395,17 +396,17 @@ function Allocation() {
                     Levels {from}–{phase.untilLevel === null ? data.rules.maxLevel : ''}
                   </span>
                   {phase.untilLevel !== null && (
-                    <input
-                      type="number"
+                    <NumberInput
                       className="guide-until"
                       aria-label={`Phase ${i + 1} ends at level`}
                       min={from}
                       max={data.rules.maxLevel}
                       value={phase.untilLevel}
-                      onChange={(e) => {
+                      onValueChange={(v) => {
+                        if (v === null) return;
                         const untilLevel = Math.max(
                           from,
-                          Math.min(data.rules.maxLevel, Math.round(Number(e.target.value)) || from),
+                          Math.min(data.rules.maxLevel, Math.round(v)),
                         );
                         setBuild({
                           statGuide: {
@@ -471,23 +472,14 @@ function Stats() {
         <div className="stat-targets">
           {STATS.map((s) => (
             <Field key={s} label={s}>
-              <input
-                type="number"
-                inputMode="numeric"
+              <NumberInput
                 min={0}
                 max={data.rules.statCap}
-                value={build.statTargets[s] ?? ''}
-                onChange={(e) => {
+                value={build.statTargets[s] ?? null}
+                onValueChange={(raw) => {
                   const next = { ...build.statTargets };
-                  const v =
-                    e.target.value === ''
-                      ? null
-                      : Math.max(
-                          0,
-                          Math.min(data.rules.statCap, Math.round(Number(e.target.value))),
-                        );
-                  if (v === null || Number.isNaN(v)) delete next[s];
-                  else next[s] = v;
+                  if (raw === null) delete next[s];
+                  else next[s] = Math.max(0, Math.min(data.rules.statCap, Math.round(raw)));
                   setBuild({ statTargets: next });
                 }}
               />

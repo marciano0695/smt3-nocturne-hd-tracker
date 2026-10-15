@@ -12,7 +12,7 @@ import {
 import type { Recommendation } from '../game/types';
 import { useStore } from '../state/store';
 import { Icon } from './Icon';
-import { Button, ConfirmDialog, Field, Unverified } from './ui';
+import { Button, ConfirmDialog, Field, NumberInput, Unverified } from './ui';
 
 const KIND_LABEL: Record<Recommendation['kind'], string> = {
   hardsave: 'Irreversible moment',
@@ -98,12 +98,10 @@ function HardSaveForm({
       }}
     >
       <Field label="Save slot used" hint="A new slot, never used before. It will be locked.">
-        <input
-          type="number"
+        <NumberInput
           min={1}
-          inputMode="numeric"
           value={slot}
-          onChange={(e) => setSlot(Math.max(1, Number(e.target.value) || 1))}
+          onValueChange={(v) => v !== null && setSlot(Math.max(1, Math.round(v)))}
         />
       </Field>
       <Button type="submit" variant="primary" icon="lock">

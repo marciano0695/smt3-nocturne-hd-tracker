@@ -8,6 +8,7 @@ import {
   Field,
   IconButton,
   NotesToggle,
+  NumberInput,
   PageHeader,
   Section,
   Tag,
@@ -491,12 +492,10 @@ function SaveSlots() {
         }}
       >
         <Field label="Slot">
-          <input
-            type="number"
+          <NumberInput
             min={1}
-            inputMode="numeric"
             value={slot}
-            onChange={(e) => setSlot(Math.max(1, Number(e.target.value) || 1))}
+            onValueChange={(v) => v !== null && setSlot(Math.max(1, Math.round(v)))}
           />
         </Field>
         <Field label="What's in it">
