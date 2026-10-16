@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { LEVELING_HREF, LevelingGuide } from '../components/leveling';
 import { EndingsTracker, Flowchart, NextMove } from '../components/story';
 import {
   AccordionGroup,
@@ -29,6 +30,7 @@ import {
   upsertSaveSlot,
 } from '../game/story';
 import type { Milestone, MilestoneKind, SaveSlot } from '../game/types';
+import { rememberOpen } from '../state/disclosure';
 import { useStore } from '../state/store';
 
 const KINDS: { kind: MilestoneKind; label: string }[] = [
@@ -540,19 +542,54 @@ function SaveSlots() {
   );
 }
 
+/** Opens and scrolls to the leveling section when a link points at it; returns a key to remount it. */
+function useLevelingJump(): number {
+  const [jumps, setJumps] = useState(0);
+  useEffect(() => {
+    const onHash = () => {
+      if (!window.location.hash.startsWith(LEVELING_HREF)) return;
+      rememberOpen('section:leveling', true);
+      // Back to the plain route, so the same link works again from this page.
+      window.history.replaceState(null, '', '#/story');
+      setJumps((n) => n + 1);
+    };
+    onHash();
+    window.addEventListener('hashchange', onHash);
+    return () => window.removeEventListener('hashchange', onHash);
+  }, []);
+  useEffect(() => {
+    if (jumps === 0) return;
+    // Wait a frame: the shell scrolls to the top after a route change.
+    const frame = requestAnimationFrame(() =>
+      document.getElementById('leveling')?.scrollIntoView({ block: 'start' }),
+    );
+    return () => cancelAnimationFrame(frame);
+  }, [jumps]);
+  return jumps;
+}
+
 export function StoryPage() {
+  const jumps = useLevelingJump();
   return (
     <div className="page">
       <PageHeader title="Story planner" />
       <NextMove />
-      <Section title="Labyrinth of Amala">
-        <Labyrinth />
-      </Section>
       <Section
         title="Milestones"
         description="In play order. Add your own story progress; only the anchors below come with the app."
       >
         <Milestones />
+      </Section>
+      <Section title="Labyrinth of Amala">
+        <Labyrinth />
+      </Section>
+      <Section
+        key={jumps}
+        id="leveling"
+        title="Where to level up"
+        description="Best grinding spots from Game8, marked against your level and story progress."
+      >
+        <LevelingGuide />
       </Section>
       <Section
         title="Save slots"

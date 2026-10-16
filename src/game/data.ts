@@ -2,6 +2,10 @@ import {
   STATS,
   type Assumption,
   type GameData,
+  type GrindSpot,
+  type GrindTier,
+  type GrindTip,
+  type LevelingGuide,
   type MagatamaData,
   type Offer,
   type PlayerState,
@@ -155,6 +159,71 @@ export function parseStatGuidesFile(json: unknown): Parsed<StatGuide[]> {
     .map((g, i) => parseStatGuide(g, `guides[${i}]`, errors))
     .filter((g): g is StatGuide => g !== null);
   return { value, errors };
+}
+
+const strings = (v: unknown): string[] =>
+  Array.isArray(v) ? v.filter((s): s is string => typeof s === 'string' && s.trim() !== '') : [];
+
+/** Validates data/leveling.json; spots in an unknown tier are skipped. */
+export function parseLevelingFile(json: unknown): Parsed<LevelingGuide> {
+  const errors: string[] = [];
+  const root = isRecord(json) ? json : {};
+  const tiers: GrindTier[] = [];
+  for (const [i, t] of (Array.isArray(root.tiers) ? root.tiers : []).entries()) {
+    const ok =
+      isRecord(t) &&
+      typeof t.id === 'string' &&
+      typeof t.title === 'string' &&
+      Number.isInteger(t.min) &&
+      Number.isInteger(t.max);
+    if (!ok) {
+      errors.push(`tiers[${i}] needs id, title and whole-number min and max levels`);
+      continue;
+    }
+    tiers.push({
+      id: t.id as string,
+      title: t.title as string,
+      min: t.min as number,
+      max: t.max as number,
+    });
+  }
+  if (tiers.length === 0) errors.push('leveling.json has no "tiers" list');
+
+  const spots: GrindSpot[] = [];
+  for (const [i, s] of (Array.isArray(root.spots) ? root.spots : []).entries()) {
+    if (!isRecord(s) || typeof s.id !== 'string' || typeof s.name !== 'string') {
+      errors.push(`spots[${i}] has no id or name`);
+      continue;
+    }
+    if (!tiers.some((t) => t.id === s.tier)) {
+      errors.push(`spots[${i}] (${s.name}): tier must be one of the tiers' ids`);
+      continue;
+    }
+    const spot: GrindSpot = {
+      id: s.id,
+      name: s.name,
+      tier: s.tier as string,
+      anyLevel: s.anyLevel === true,
+      unlockedBy: typeof s.unlockedBy === 'string' && s.unlockedBy !== '' ? s.unlockedBy : null,
+      enemies: strings(s.enemies),
+      tips: strings(s.tips),
+      dlc: s.dlc === true,
+    };
+    if (typeof s.when === 'string' && s.when.trim() !== '') spot.when = s.when.trim();
+    spots.push(spot);
+  }
+
+  const tips: GrindTip[] = [];
+  for (const [i, t] of (Array.isArray(root.tips) ? root.tips : []).entries()) {
+    if (!isRecord(t) || typeof t.title !== 'string' || typeof t.text !== 'string') {
+      errors.push(`tips[${i}] needs a title and text`);
+      continue;
+    }
+    tips.push({ title: t.title, text: t.text, dlc: t.dlc === true });
+  }
+
+  const source = typeof root.source === 'string' ? root.source : '';
+  return { value: { source, tiers, spots, tips }, errors };
 }
 
 /** Validates data/rules.json, falling back to defaults for missing or bad fields. */

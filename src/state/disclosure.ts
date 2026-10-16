@@ -20,6 +20,11 @@ function writeOne(id: string, open: boolean) {
   }
 }
 
+/** Opens or closes a section from elsewhere, before it mounts. */
+export function rememberOpen(id: string, open: boolean) {
+  writeOne(id, open);
+}
+
 /** Open/closed state remembered per device; `defaultOpen` applies until the player toggles it. */
 export function useOpenState(id: string, defaultOpen: boolean): [boolean, (open: boolean) => void] {
   const [stored, setStored] = useState<boolean | undefined>(() =>

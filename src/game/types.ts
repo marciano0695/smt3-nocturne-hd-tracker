@@ -91,6 +91,43 @@ export interface StatGuide {
   phases: StatGuidePhase[];
 }
 
+export interface GrindTier {
+  id: string;
+  title: string;
+  min: number;
+  max: number;
+}
+
+/** A place to grind EXP, from data/leveling.json. */
+export interface GrindSpot {
+  id: string;
+  name: string;
+  tier: string;
+  /** Worth farming at any level, so never out-leveled. */
+  anyLevel: boolean;
+  /** Story milestone that opens the area; null = always reachable. */
+  unlockedBy: string | null;
+  when?: string;
+  enemies: string[];
+  tips: string[];
+  dlc: boolean;
+}
+
+export interface GrindTip {
+  title: string;
+  text: string;
+  dlc: boolean;
+}
+
+export interface LevelingGuide {
+  source: string;
+  tiers: GrindTier[];
+  spots: GrindSpot[];
+  tips: GrindTip[];
+}
+
+export type SpotStatus = 'locked' | 'under' | 'ready' | 'past';
+
 export interface Build {
   /** Final 8 skills. */
   target: string[];

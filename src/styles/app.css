@@ -2391,3 +2391,82 @@ ul.form-warning {
 .flow-howto li + li {
   margin-top: var(--space-1);
 }
+
+/* Where to level up. */
+.spots {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.spot {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--text-sm);
+}
+
+.spot:last-child {
+  border-bottom: 0;
+}
+
+.spot.is-locked {
+  opacity: 0.55;
+}
+
+.spot-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+}
+
+.spot-name {
+  flex: 1 1 14rem;
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.spot-when,
+.spot-enemies {
+  margin: 0;
+  max-width: 75ch;
+  color: var(--muted);
+}
+
+.spot-label {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+.spot-tips,
+.leveling-tips {
+  margin: 0;
+  padding-left: 1.1rem;
+  max-width: 75ch;
+}
+
+.leveling-subhead {
+  margin: var(--space-4) 0 var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 650;
+}
+
+.leveling-tips {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.leveling-tips span {
+  color: var(--muted);
+}
+
+.leveling-source {
+  display: block;
+  margin-top: var(--space-4);
+  overflow-wrap: anywhere;
+}

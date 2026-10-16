@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { readySpots } from '../game/leveling';
 import {
   endings,
   flowchart,
@@ -10,8 +11,10 @@ import {
   type FlowNode,
 } from '../game/story';
 import type { Recommendation } from '../game/types';
+import { levelingGuide } from '../gameData';
 import { useStore } from '../state/store';
 import { Icon } from './Icon';
+import { LEVELING_HREF } from './leveling';
 import { Button, ConfirmDialog, Field, NumberInput, Unverified } from './ui';
 
 const KIND_LABEL: Record<Recommendation['kind'], string> = {
@@ -39,6 +42,7 @@ export function NextMove() {
           {r.levelGap} level{r.levelGap === 1 ? '' : 's'} below the recommended level
         </p>
       )}
+      {r.kind === 'level-up' && <GrindLink />}
       {milestone?.notes && r.kind !== 'hardsave' && <p className="next-notes">{milestone.notes}</p>}
       {r.kind === 'hardsave' && r.milestoneId && r.suggestedSlot !== null && (
         <HardSaveForm milestoneId={r.milestoneId} suggestedSlot={r.suggestedSlot} />
@@ -68,6 +72,16 @@ export function NextMove() {
         </a>
       )}
     </article>
+  );
+}
+
+function GrindLink() {
+  const { state } = useStore();
+  const ready = readySpots(levelingGuide, state).length;
+  return (
+    <a className="next-link" href={LEVELING_HREF}>
+      See where to level up{ready > 0 && ` (${ready} good for you now)`}
+    </a>
   );
 }
 

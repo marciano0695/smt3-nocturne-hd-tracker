@@ -1,0 +1,161 @@
+{
+	"_note": "Where to grind EXP, from Game8's leveling guide. Tiers use Game8's level ranges; a spot counts as 'good for you now' inside its tier's range (from 3 levels under it) and 'out-leveled' once you are more than 6 levels past it (Game8: farming stops paying off 6 to 10 levels above an area's strongest demon). 'anyLevel' spots are never out-leveled. 'unlockedBy' is a story.json milestone id: the spot is dimmed until that milestone is available or done (null = always reachable). Everything here is unverified until confirmed in-game.",
+	"source": "Game8, \"Leveling Guide: Best Leveling Areas\" (HD Remaster, 17 June 2021): https://game8.co/games/Shin-Megami-Tensei-III-Nocturne/archives/332213",
+	"tiers": [
+		{ "id": "early", "title": "Early game", "min": 15, "max": 30 },
+		{ "id": "mid", "title": "Mid-game", "min": 35, "max": 60 },
+		{ "id": "late", "title": "Late game", "min": 50, "max": 90 }
+	],
+	"spots": [
+		{
+			"id": "radio-tower",
+			"name": "Radio Tower area (world map)",
+			"tier": "early",
+			"unlockedBy": "story-ginza",
+			"when": "After you arrive in Ginza. Follow the highway east of Ginza on the world map.",
+			"enemies": [
+				"Yurakucho and Shinbashi: Archangel, Principality",
+				"Shiba: adds Power, Succubus",
+				"Shibaura: adds Power, Badb Catha"
+			],
+			"tips": [
+				"Level 30+ demons.",
+				"Phys or Dark skills and demons handle these enemies easily.",
+				"Badb Catha's Wing Buffet hits hard: run from it at lower levels unless the party has Electricity magic.",
+				"Divine demons here can use instant-kill Light magic, so save often."
+			],
+			"dlc": false
+		},
+		{
+			"id": "demifiend-birthplace",
+			"name": "Place Where the Demi-Fiend Was Born",
+			"tier": "early",
+			"anyLevel": true,
+			"unlockedBy": "story-ginza",
+			"when": "Once you reach Ginza and the Amala Link is unlocked. Needs the Mercy and Expectation Map Pack DLC.",
+			"enemies": [
+				"1F: Oni, Nigi Mitama, Saki Mitama",
+				"2F: adds Phantom, Yomotsu-Ikusa, Flauros, Chimera",
+				"Also listed: Datsue-Ba, Mou-Ryo, Yaka"
+			],
+			"tips": [
+				"Good at all levels.",
+				"Mitama demons always drop a Grimoire; flee battles without them.",
+				"Grimoire (Thin) gives a set amount of EXP; Grimoire (Thick) gives enough EXP to level up.",
+				"Bring a healer with Dia or Media to heal between battles."
+			],
+			"dlc": true
+		},
+		{
+			"id": "kabukicho-prison",
+			"name": "Kabukicho Prison",
+			"tier": "mid",
+			"unlockedBy": "story-kabukicho-prison",
+			"enemies": [
+				"All floors: Preta, Naga, Mizuchi",
+				"5F: adds Raiju, Pisaca, Yaksini (rare)"
+			],
+			"tips": [
+				"One of the best mid-game spots without the DLC.",
+				"Mizuchi and Raiju are fragile but give good EXP.",
+				"Use Riberama to chain encounters."
+			],
+			"dlc": false
+		},
+		{
+			"id": "yoyogi-park",
+			"name": "Yoyogi Park, Construction Site",
+			"tier": "mid",
+			"unlockedBy": null,
+			"when": "Best after clearing Sakahagi's presence from the park.",
+			"enemies": ["Troll, Oberon, Titania, Setanta"],
+			"tips": [
+				"Titania is a high-level Fairy that gives good EXP.",
+				"Chain battles with Riberama to gain a few levels before continuing the story."
+			],
+			"dlc": false
+		},
+		{
+			"id": "amala-temple-courtyard",
+			"name": "Amala Temple, courtyard outside the three temples",
+			"tier": "mid",
+			"unlockedBy": "story-amala-temple",
+			"enemies": ["Troll, Oberon, Titania, Suparna, Virtue, Dominion, Legion, Aquans"],
+			"tips": [
+				"Mid to late game.",
+				"Many high-level enemies with few resistances, so most Demi-fiend builds work.",
+				"A nearby Amala Drum Network sits in a safe zone: warp out to heal and come back.",
+				"Recruiting Dominion here opens late-game Seraph and Divine demons."
+			],
+			"dlc": false
+		},
+		{
+			"id": "diet-building",
+			"name": "Diet Building",
+			"tier": "late",
+			"unlockedBy": "story-tokyo-diet-building",
+			"enemies": ["All floors: Girimekhala, Pulukishi"],
+			"tips": [
+				"Useful while testing endings, or for grinding if you aren't ready to enter the Tower of Kagutsuchi."
+			],
+			"dlc": false
+		},
+		{
+			"id": "fifth-kalpa-b1",
+			"name": "Fifth Kalpa, B1",
+			"tier": "late",
+			"unlockedBy": "kalpa-5",
+			"enemies": ["Hua Po, Nyx, Lilith, Aciel, Abaddon, Loki"],
+			"tips": [
+				"Nyx and Lilith give strong EXP even at high levels.",
+				"Keep demons with revival and healing skills outside the active party."
+			],
+			"dlc": false
+		},
+		{
+			"id": "tower-of-kagutsuchi",
+			"name": "Tower of Kagutsuchi",
+			"tier": "late",
+			"unlockedBy": "tower-of-kagutsuchi",
+			"enemies": ["All floors: Throne, Surt, Rangda"],
+			"tips": [
+				"Among the best EXP in the game: some of its highest-level demons spawn here.",
+				"Little story is left, so use it to prepare for boss fights, especially for the True Demon ending.",
+				"Entering the Tower before finishing the Labyrinth locks the Labyrinth, and with it True Demon and Pierce (story planner)."
+			],
+			"dlc": false
+		}
+	],
+	"tips": [
+		{
+			"title": "Riberama",
+			"text": "Raises the encounter rate until the next new Kagutsuchi; on Normal you may fight every two steps. Pair it with Auto-Battle.",
+			"dlc": false
+		},
+		{
+			"title": "Merciful difficulty",
+			"text": "Roughly 3x to 4x EXP per battle. Its low encounter rate needs offsetting, e.g. with Riberama. Switching difficulty doesn't affect saves; the DLC is a free download.",
+			"dlc": true
+		},
+		{
+			"title": "Farm by level",
+			"text": "Skip an area once you are 6 to 10 levels above its strongest demon; the EXP isn't worth it.",
+			"dlc": false
+		},
+		{
+			"title": "AOE demons",
+			"text": "Spells that hit all enemies clear mobs easily, especially on weaknesses. Pixie's Zio can sometimes become Mazio.",
+			"dlc": false
+		},
+		{
+			"title": "Protect the Demi-fiend",
+			"text": "Demons can be revived, but if the Demi-fiend dies it's game over. Watch his HP during Auto-Battle.",
+			"dlc": false
+		},
+		{
+			"title": "Strength",
+			"text": "The Demi-fiend excels at physical skills, so investing in Strength helps against tougher enemies.",
+			"dlc": false
+		}
+	]
+}

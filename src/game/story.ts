@@ -43,8 +43,8 @@ export interface Flowchart {
   unlinked: FlowNode[];
 }
 
-// The Labyrinth allows tackling content up to this many levels under its recommended level.
-const LEVEL_ALLOWANCE = 3;
+// Content is worth tackling from this many levels under its recommended level.
+export const LEVEL_ALLOWANCE = 3;
 const MAIN_PATH: MilestoneKind[] = ['story', 'hardsave', 'ending'];
 
 function recommendation(

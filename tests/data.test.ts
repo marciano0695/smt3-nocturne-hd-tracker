@@ -1,4 +1,5 @@
 import { describe, expect, it } from 'vite-plus/test';
+import levelingJson from '../data/leveling.json';
 import magatamaJson from '../data/magatama.json';
 import rulesJson from '../data/rules.json';
 import storyJson from '../data/story.json';
@@ -6,6 +7,7 @@ import {
   canLearnAt,
   createGameData,
   findSkill,
+  parseLevelingFile,
   parseMagatamaFile,
   parseRules,
 } from '../src/game/data';
@@ -51,6 +53,26 @@ describe('data files', () => {
     );
     expect(rewards.length).toBeGreaterThan(0);
     expect(rewards.filter((name) => !data.magatamaByName.has(name))).toEqual([]);
+  });
+
+  it('reads the leveling guide, opening each spot with a real story milestone', () => {
+    const leveling = parseLevelingFile(levelingJson);
+    expect(leveling.errors).toEqual([]);
+    expect(leveling.value.spots.length).toBe(8);
+    const ids = new Set(storyJson.milestones.map((m) => m.id));
+    const openers = leveling.value.spots.flatMap((s) => (s.unlockedBy ? [s.unlockedBy] : []));
+    expect(openers.filter((id) => !ids.has(id))).toEqual([]);
+  });
+
+  it('reports bad leveling entries instead of throwing', () => {
+    const parsed = parseLevelingFile({
+      tiers: [{ id: 'early', title: 'Early', min: 15, max: 30 }, { id: 'x' }],
+      spots: [{ id: 'a', name: 'A', tier: 'nope' }, {}, { id: 'b', name: 'B', tier: 'early' }],
+      tips: [{ title: 'T' }],
+    });
+    expect(parsed.value.spots.map((s) => s.id)).toEqual(['b']);
+    expect(parsed.errors).toHaveLength(4);
+    expect(parseLevelingFile(null).errors).toEqual(['leveling.json has no "tiers" list']);
   });
 
   it('reports bad entries instead of throwing', () => {
