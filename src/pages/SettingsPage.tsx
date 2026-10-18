@@ -20,7 +20,7 @@ import {
   type ParseResult,
 } from '../game/persistence';
 import { anchorsOutOfOrder, changedAnchors, syncAnchors } from '../game/story';
-import { STATS, type PlayerState, type SaveFile } from '../game/types';
+import { STATS, type Difficulty, type PlayerState, type SaveFile } from '../game/types';
 import { seedStory, useStore } from '../state/store';
 import { useTheme, type ThemeChoice } from '../state/theme';
 
@@ -178,6 +178,7 @@ function ImportSummary({ save, warnings }: { save: SaveFile; warnings: string[] 
 
 type Draft = Pick<PlayerState, 'level' | 'stats' | 'equipped' | 'labyrinthComplete'> & {
   skills: string[];
+  difficulty: Difficulty;
 };
 
 function EditSave() {
@@ -188,6 +189,7 @@ function EditSave() {
     skills: Array.from({ length: data.rules.maxSkills }, (_, i) => s.skills[i] ?? ''),
     equipped: s.equipped,
     labyrinthComplete: s.labyrinthComplete,
+    difficulty: s.difficulty ?? 'normal',
   });
   const [draft, setDraft] = useState(() => toDraft(state));
   const [issues, setIssues] = useState<string[]>([]);
@@ -273,6 +275,15 @@ function EditSave() {
                 {m}
               </option>
             ))}
+          </select>
+        </Field>
+        <Field label="Difficulty" hint="On Hard, advice uses your Hard levels">
+          <select
+            value={draft.difficulty}
+            onChange={(e) => setDraft({ ...draft, difficulty: e.target.value as Difficulty })}
+          >
+            <option value="normal">Normal</option>
+            <option value="hard">Hard</option>
           </select>
         </Field>
         <label className="switch-row">
@@ -418,7 +429,7 @@ export function SettingsPage() {
       <Section
         id="edit"
         title="Edit current save"
-        description="Correct anything the tracker got out of step with: level, stats, skills, the Labyrinth."
+        description="Correct anything the tracker got out of step with: level, stats, skills, difficulty, the Labyrinth."
       >
         <EditSave />
       </Section>

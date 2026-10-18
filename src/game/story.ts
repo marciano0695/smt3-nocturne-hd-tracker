@@ -1,4 +1,5 @@
 import type {
+  Difficulty,
   Milestone,
   MilestoneKind,
   PlayerState,
@@ -13,6 +14,7 @@ export interface NewMilestone {
   title: string;
   kind: MilestoneKind;
   recommendedLevel?: number;
+  recommendedLevelHard?: number;
   notes?: string;
   available?: boolean;
   verified?: boolean;
@@ -71,10 +73,27 @@ function slotOf(story: StoryState, milestoneId: string): number | null {
   return story.saveSlots.find((s) => s.milestoneId === milestoneId)?.slot ?? null;
 }
 
+/** The level the advice goes by; on Hard, milestones without a Hard level fall back to Normal. */
+export function levelFor(m: Milestone, difficulty: Difficulty | undefined): number | undefined {
+  return difficulty === 'hard'
+    ? (m.recommendedLevelHard ?? m.recommendedLevel)
+    : m.recommendedLevel;
+}
+
+function describeLevel(m: Milestone, difficulty: Difficulty | undefined): string {
+  const lv = levelFor(m, difficulty);
+  if (difficulty !== 'hard') return `${lv}`;
+  return m.recommendedLevelHard !== undefined
+    ? `${lv} on Hard`
+    : `${lv} (Normal; no Hard level set)`;
+}
+
 /** Dashboard "What next?": the first matching rule from CLAUDE.md, with its reason. */
 export function recommendNext(state: PlayerState): Recommendation {
-  const { story, level } = state;
+  const { story, level, difficulty } = state;
   const open = (m: Milestone) => m.available && !m.done;
+  const rec = (m: Milestone) => levelFor(m, difficulty);
+  const recText = (m: Milestone) => describeLevel(m, difficulty);
 
   const hardSave = story.milestones.find((m) => m.kind === 'hardsave' && open(m));
   if (hardSave) {
@@ -91,27 +110,26 @@ export function recommendNext(state: PlayerState): Recommendation {
   const labyrinth = story.milestones.filter(
     (m) => (m.kind === 'labyrinth' || m.kind === 'fiend') && open(m),
   );
-  const ready = labyrinth.find(
-    (m) => m.recommendedLevel === undefined || level >= m.recommendedLevel - LEVEL_ALLOWANCE,
-  );
+  const ready = labyrinth.find((m) => {
+    const lv = rec(m);
+    return lv === undefined || level >= lv - LEVEL_ALLOWANCE;
+  });
   if (ready) {
     const why =
-      ready.recommendedLevel === undefined
+      rec(ready) === undefined
         ? 'It is open and has no recommended level set.'
-        : `It is open and you are level ${level}, close enough to its recommended level ${ready.recommendedLevel}.`;
+        : `It is open and you are level ${level}, close enough to its recommended level ${recText(ready)}.`;
     return recommendation(2, 'labyrinth', ready.title, why, { milestoneId: ready.id });
   }
   if (labyrinth.length > 0) {
     // Every open item has a level here, otherwise it would have been ready.
-    const lowest = labyrinth.reduce((a, b) =>
-      (b.recommendedLevel ?? 0) < (a.recommendedLevel ?? 0) ? b : a,
-    );
-    const recommended = lowest.recommendedLevel ?? level;
+    const lowest = labyrinth.reduce((a, b) => ((rec(b) ?? 0) < (rec(a) ?? 0) ? b : a));
+    const recommended = rec(lowest) ?? level;
     return recommendation(
       2,
       'level-up',
       'Level up or do side quests first',
-      `You are level ${level}; "${lowest.title}" is recommended at level ${recommended}. Being within 3 levels of it is enough.`,
+      `You are level ${level}; "${lowest.title}" is recommended at level ${recText(lowest)}. Being within 3 levels of it is enough.`,
       { milestoneId: lowest.id, levelGap: recommended - level },
     );
   }
@@ -130,12 +148,7 @@ export function recommendNext(state: PlayerState): Recommendation {
     );
   }
 
-  const side = story.milestones.find(
-    (m) =>
-      m.kind === 'side' &&
-      open(m) &&
-      (m.recommendedLevel === undefined || m.recommendedLevel <= level),
-  );
+  const side = story.milestones.find((m) => m.kind === 'side' && open(m) && (rec(m) ?? 0) <= level);
   if (side) {
     return recommendation(
       4,
@@ -150,9 +163,9 @@ export function recommendNext(state: PlayerState): Recommendation {
 
   if (nextStory) {
     const why =
-      nextStory.recommendedLevel === undefined
+      rec(nextStory) === undefined
         ? 'This is the next story milestone.'
-        : `This is the next story milestone, recommended at level ${nextStory.recommendedLevel} (you are level ${level}).`;
+        : `This is the next story milestone, recommended at level ${recText(nextStory)} (you are level ${level}).`;
     return recommendation(5, 'story', nextStory.title, why, { milestoneId: nextStory.id });
   }
 
@@ -340,6 +353,9 @@ export function addMilestone(
     verified: input.verified ?? true,
   };
   if (input.recommendedLevel !== undefined) milestone.recommendedLevel = input.recommendedLevel;
+  if (input.recommendedLevelHard !== undefined) {
+    milestone.recommendedLevelHard = input.recommendedLevelHard;
+  }
   if (input.notes !== undefined) milestone.notes = input.notes;
   if (input.requires !== undefined) milestone.requires = [...input.requires];
   const list = [...state.story.milestones];
@@ -404,7 +420,8 @@ export function changedAnchors(story: StoryState, seed: StoryState): string[] {
           mine.magatama !== m.magatama ||
           mine.choice !== m.choice ||
           (mine.requires ?? []).join('|') !== (m.requires ?? []).join('|') ||
-          (mine.recommendedLevel === undefined && m.recommendedLevel !== undefined))
+          (mine.recommendedLevel === undefined && m.recommendedLevel !== undefined) ||
+          (mine.recommendedLevelHard === undefined && m.recommendedLevelHard !== undefined))
       );
     })
     .map((m) => m.id);
@@ -440,6 +457,12 @@ export function syncAnchors(
         // A level the player set is theirs; story.json only fills a missing one.
         if (refreshed.recommendedLevel === undefined && fresh.recommendedLevel !== undefined) {
           refreshed.recommendedLevel = fresh.recommendedLevel;
+        }
+        if (
+          refreshed.recommendedLevelHard === undefined &&
+          fresh.recommendedLevelHard !== undefined
+        ) {
+          refreshed.recommendedLevelHard = fresh.recommendedLevelHard;
         }
         return refreshed;
       }),

@@ -79,6 +79,7 @@ function parseMilestone(raw: unknown, errors: string[]): Milestone | null {
     verified: raw.verified !== false,
   };
   if (isNonNegInt(raw.recommendedLevel)) m.recommendedLevel = raw.recommendedLevel;
+  if (isNonNegInt(raw.recommendedLevelHard)) m.recommendedLevelHard = raw.recommendedLevelHard;
   if (typeof raw.notes === 'string') m.notes = raw.notes;
   if (typeof raw.magatama === 'string' && raw.magatama !== '') m.magatama = raw.magatama;
   if (typeof raw.choice === 'string' && raw.choice !== '') m.choice = raw.choice;
@@ -264,19 +265,20 @@ export function normalizeState(
     warnings.push(...parsed.errors.map((e) => `story: ${e}`));
   }
 
-  return {
-    value: {
-      level,
-      stats,
-      skills,
-      equipped,
-      magatama,
-      labyrinthComplete: r.labyrinthComplete === true,
-      build: parseBuild(r.build, warnings),
-      story,
-    },
-    errors: warnings,
+  const value: PlayerState = {
+    level,
+    stats,
+    skills,
+    equipped,
+    magatama,
+    labyrinthComplete: r.labyrinthComplete === true,
+    build: parseBuild(r.build, warnings),
+    story,
   };
+  if (r.difficulty === 'hard') value.difficulty = 'hard';
+  else if (r.difficulty !== undefined && r.difficulty !== 'normal')
+    warnings.push(`difficulty ${JSON.stringify(r.difficulty)} is unknown and was set to Normal`);
+  return { value, errors: warnings };
 }
 
 /** New game from data/new-game.json and data/story.json; the story starts with nothing done. */

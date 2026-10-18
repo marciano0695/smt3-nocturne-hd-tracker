@@ -53,19 +53,10 @@
 			"available": false,
 			"done": false,
 			"verified": true,
-			"notes": "Opens right after defeating Matador. Clear it before you enter Asakusa if you want the True Demon ending.",
+			"notes": "Opens right after defeating Matador. Clear it before you enter Asakusa if you want the True Demon ending. Samurai Gamers recommends clearing it after the Ikebukuro Tunnel and before Asakusa. Recommended level: 20 (Game8), 38+ (Samurai Gamers). Neither guide names a difficulty; the Hard level uses Samurai Gamers' figure because Hard doubles enemy damage and triples trap damage.",
 			"requires": ["fiend-matador"],
-			"recommendedLevel": 20
-		},
-		{
-			"id": "side-black-visor",
-			"title": "Black Visor and the Burial Chambers",
-			"kind": "side",
-			"available": false,
-			"done": false,
-			"verified": false,
-			"notes": "Behind the locked silver door in Kalpa 1 is the Black Visor. With it, tombstones in the Burial Chambers of each Kalpa let you refight bosses you've beaten (rewards are modest; some rooms need base Strength 25 or Luck 18, or fusing Metatron) (Game8; Samurai Gamers says the Moon Key from Kalpa 2 opens the way).",
-			"requires": ["kalpa-1"]
+			"recommendedLevel": 20,
+			"recommendedLevelHard": 38
 		},
 
 		{
@@ -75,7 +66,7 @@
 			"recommendedLevel": 21,
 			"available": false,
 			"done": false,
-			"verified": false,
+			"verified": true,
 			"notes": "Bosses: Oni, Orthrus, Yaksini, Thor (gives Narukami), Raidou/Dante, then Daisoujou. Your answers to the Oni and Gozu-Tennoh affect your Reason. (Samurai Gamers HD Remaster walkthrough; Game8 agrees) Reason flags here: Shijima 1/2 (agree with Hikawa: \"Actually, I do\") and Yosuga 1/2 (agree with Chiaki: \"Yeah, I get it\"). First flags don't lock anything; RPG Site suggests taking the first flag of each Reason to keep them all open (Game8, Samurai Gamers, RPG Site).",
 			"requires": ["story-ginza"],
 			"magatama": "Narukami"
@@ -131,9 +122,20 @@
 			"available": false,
 			"done": false,
 			"verified": true,
-			"notes": "Place the Candelabra of Eternity (Daisoujou) and Dignity (Hell Biker) at the central pillars. Ends with a cutscene with the Riders.",
+			"notes": "Place the Candelabra of Eternity (Daisoujou) and Dignity (Hell Biker) at the central pillars. Ends with a cutscene with the Riders. Recommended level: 35 (Game8), 39+ (Samurai Gamers). Neither guide names a difficulty; the Hard level uses Samurai Gamers' figure because Hard doubles enemy damage and triples trap damage (the cursed area's traps hurt).",
 			"requires": ["kalpa-1", "fiend-daisoujou", "fiend-hell-biker"],
-			"recommendedLevel": 35
+			"recommendedLevel": 35,
+			"recommendedLevelHard": 39
+		},
+		{
+			"id": "side-black-visor",
+			"title": "Black Visor and the Burial Chambers",
+			"kind": "side",
+			"available": false,
+			"done": false,
+			"verified": true,
+			"notes": "The Black Visor is behind a locked door on Kalpa 1 B1F, opened with the Moon Key from Kalpa 2 (B3F, down a ladder behind an invisible door on the east side of the big room). With it, tombstones in the Burial Chambers of each Kalpa let you refight bosses you've beaten (rewards are modest; some rooms need base Strength 25 or Luck 18, or fusing Metatron) (Samurai Gamers, TouchTapPlay).",
+			"requires": ["kalpa-2"]
 		},
 
 		{

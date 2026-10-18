@@ -54,6 +54,7 @@ function richSave(): SaveFile {
     title: 'Errand',
     kind: 'side',
     recommendedLevel: 0,
+    recommendedLevelHard: 4,
     notes: '',
     available: true,
     done: false,
@@ -65,6 +66,7 @@ function richSave(): SaveFile {
     history: [{ skill: 'Focus', level: 23, result: 'learned', replaced: 'Ice Breath' }],
   };
   state.equipped = 'Kamudo';
+  state.difficulty = 'hard';
   state.build.wishlist = ['Media'];
   state.build.statGuide = {
     id: 'g',
@@ -99,6 +101,13 @@ describe('export and import', () => {
     expect(parsed.save.state.skills).toEqual(fixtureJson.skills);
     expect(parsed.save.state.story).toEqual(seedStory());
     expect(parsed.warnings).toEqual([]);
+  });
+
+  it('treats a missing or unknown difficulty as Normal', () => {
+    expect(normalizeState(fixtureJson, gameData, seedStory()).value.difficulty).toBeUndefined();
+    const odd = normalizeState({ ...fixtureJson, difficulty: 'lunatic' }, gameData, seedStory());
+    expect(odd.value.difficulty).toBeUndefined();
+    expect(odd.errors).toContain('difficulty "lunatic" is unknown and was set to Normal');
   });
 
   it('rejects invalid JSON, non-objects and newer formats', () => {

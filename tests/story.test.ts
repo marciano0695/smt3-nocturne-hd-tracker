@@ -219,6 +219,38 @@ describe('recommendNext', () => {
     expect(r.reason).toMatch(/within 3 levels/);
   });
 
+  it('on Hard, uses the Hard level instead of the Normal one', () => {
+    const story = seedStory();
+    edit(story, 'kalpa-1', { available: true, recommendedLevel: 20, recommendedLevelHard: 28 });
+    const hard = recommendNext(player(story, { level: 22, difficulty: 'hard' }));
+    expect(hard).toMatchObject({ rule: 2, kind: 'level-up', levelGap: 6 });
+    expect(hard.reason).toMatch(/28 on Hard/);
+    // The Hard level is ignored on Normal.
+    expect(recommendNext(player(story, { level: 22 }))).toMatchObject({ kind: 'labyrinth' });
+  });
+
+  it('on Hard, falls back to the Normal level when no Hard level is set', () => {
+    const story = seedStory();
+    edit(story, 'kalpa-1', {
+      available: true,
+      recommendedLevel: 26,
+      recommendedLevelHard: undefined,
+    });
+    const r = recommendNext(player(story, { level: 22, difficulty: 'hard' }));
+    expect(r).toMatchObject({ kind: 'level-up', levelGap: 4 });
+    expect(r.reason).toMatch(/no Hard level set/);
+  });
+
+  it('rule 4: on Hard, a side quest counts as at your level by its Hard level', () => {
+    const story = storyOf(
+      custom('side-a', 'side', { available: true, recommendedLevel: 20, recommendedLevelHard: 25 }),
+    );
+    expect(recommendNext(player(story, { level: 22 }))).toMatchObject({ rule: 4 });
+    expect(recommendNext(player(story, { level: 22, difficulty: 'hard' }))).not.toMatchObject({
+      rule: 4,
+    });
+  });
+
   it('rule 2: content without a recommended level is always within reach', () => {
     const story = seedStory();
     edit(story, 'fiend-matador', { available: true });

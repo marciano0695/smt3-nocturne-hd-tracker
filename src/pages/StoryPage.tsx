@@ -43,6 +43,21 @@ const KINDS: { kind: MilestoneKind; label: string }[] = [
 ];
 const kindLabel = (k: MilestoneKind) => KINDS.find((x) => x.kind === k)?.label ?? k;
 
+function LevelTags({ m }: { m: Milestone }) {
+  const { state } = useStore();
+  return (
+    <>
+      {m.recommendedLevel !== undefined && <Tag>Lv {m.recommendedLevel}</Tag>}
+      {m.recommendedLevelHard !== undefined && (
+        // Stands out when playing on Hard, since that is the level the advice uses.
+        <Tag tone={state.difficulty === 'hard' ? 'primary' : 'neutral'}>
+          Hard Lv {m.recommendedLevelHard}
+        </Tag>
+      )}
+    </>
+  );
+}
+
 function LabStep({ m }: { m: Milestone }) {
   const { update } = useStore();
   const [showNotes, setShowNotes] = useState(false);
@@ -64,7 +79,7 @@ function LabStep({ m }: { m: Milestone }) {
         <Tag tone={m.kind === 'labyrinth' ? 'primary' : 'neutral'}>
           {m.kind === 'labyrinth' ? 'Kalpa' : 'Fiend'}
         </Tag>
-        {m.recommendedLevel !== undefined && <Tag>Lv {m.recommendedLevel}</Tag>}
+        <LevelTags m={m} />
         {m.available && !m.done && <Tag tone="accent">available</Tag>}
         {!m.verified && (
           <Unverified
@@ -186,7 +201,7 @@ function MilestoneRow({ m, index, count }: { m: Milestone; index: number; count:
           >
             {kindLabel(m.kind)}
           </Tag>
-          {m.recommendedLevel !== undefined && <Tag>Lv {m.recommendedLevel}</Tag>}
+          <LevelTags m={m} />
           {m.magatama && (
             <Tag tone={state.magatama[m.magatama] ? 'success' : 'neutral'}>
               Reward: {m.magatama}
@@ -242,12 +257,16 @@ function MilestoneForm({ initial, onDone }: { initial?: Milestone; onDone: () =>
   const [title, setTitle] = useState(initial?.title ?? '');
   const [kind, setKind] = useState<MilestoneKind>(initial?.kind ?? 'story');
   const [level, setLevel] = useState(initial?.recommendedLevel?.toString() ?? '');
+  const [hardLevel, setHardLevel] = useState(initial?.recommendedLevelHard?.toString() ?? '');
   const [notes, setNotes] = useState(initial?.notes ?? '');
   const [available, setAvailable] = useState(initial?.available ?? false);
   const [position, setPosition] = useState(state.story.milestones.length);
   const submit = () => {
     if (!title.trim()) return;
-    const recommendedLevel = level === '' ? undefined : Math.max(1, Math.round(Number(level)));
+    const toLevel = (text: string) =>
+      text === '' ? undefined : Math.max(1, Math.round(Number(text)));
+    const recommendedLevel = toLevel(level);
+    const recommendedLevelHard = toLevel(hardLevel);
     if (initial) {
       update((s) => {
         let next = updateMilestone(s, initial.id, {
@@ -255,6 +274,7 @@ function MilestoneForm({ initial, onDone }: { initial?: Milestone; onDone: () =>
           kind,
           notes: notes || undefined,
           recommendedLevel,
+          recommendedLevelHard,
         });
         next = setMilestoneAvailable(next, initial.id, available);
         return next;
@@ -264,7 +284,14 @@ function MilestoneForm({ initial, onDone }: { initial?: Milestone; onDone: () =>
         (s) =>
           addMilestone(
             s,
-            { title, kind, notes: notes || undefined, recommendedLevel, available },
+            {
+              title,
+              kind,
+              notes: notes || undefined,
+              recommendedLevel,
+              recommendedLevelHard,
+              available,
+            },
             position,
           ),
         `"${title.trim()}" added.`,
@@ -272,6 +299,7 @@ function MilestoneForm({ initial, onDone }: { initial?: Milestone; onDone: () =>
       setTitle('');
       setNotes('');
       setLevel('');
+      setHardLevel('');
     }
     onDone();
   };
@@ -303,6 +331,16 @@ function MilestoneForm({ initial, onDone }: { initial?: Milestone; onDone: () =>
           max={99}
           value={level}
           onChange={(e) => setLevel(e.target.value)}
+        />
+      </Field>
+      <Field label="Recommended level on Hard" hint="Optional; the guides only list Normal">
+        <input
+          type="number"
+          inputMode="numeric"
+          min={1}
+          max={99}
+          value={hardLevel}
+          onChange={(e) => setHardLevel(e.target.value)}
         />
       </Field>
       {!initial && (

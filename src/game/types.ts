@@ -144,11 +144,15 @@ export interface Build {
 
 export type MilestoneKind = 'story' | 'labyrinth' | 'fiend' | 'side' | 'hardsave' | 'ending';
 
+export type Difficulty = 'normal' | 'hard';
+
 export interface Milestone {
   id: string;
   title: string;
   kind: MilestoneKind;
   recommendedLevel?: number;
+  /** Entered by the player: the guides only publish levels for Normal. */
+  recommendedLevelHard?: number;
   available: boolean;
   done: boolean;
   verified: boolean;
@@ -185,6 +189,8 @@ export interface PlayerState {
   /** Only Magatama the player owns. */
   magatama: Record<string, MagatamaProgress>;
   labyrinthComplete: boolean;
+  /** Missing means Normal, so older saves and fixtures stay valid. */
+  difficulty?: Difficulty;
   build: Build;
   story: StoryState;
 }
