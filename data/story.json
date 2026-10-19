@@ -319,12 +319,12 @@
 			"id": "side-black-frost",
 			"title": "Black Frost (Kabukicho Prison)",
 			"kind": "side",
-			"recommendedLevel": 40,
+			"recommendedLevel": 70,
 			"available": false,
 			"done": false,
 			"verified": false,
 			"magatama": "Satan",
-			"notes": "Opens: during the Yoyogi Park revisit chapter (Samurai Gamers). Fight him on Kabukicho Prison 5F, in the room where you fought Mizuchi. Recommended level: 40+ per Samurai Gamers, 70+ per Game8. Reward: Satan Magatama (Deadly Fury, a build target).",
+			"notes": "Opens: during the Yoyogi Park revisit chapter, after the Chiaki event in Gozu-Tennoh's room (Samurai Gamers, GameFAQs, Neoseeker). Fight him on Kabukicho Prison 5F, in the room where you fought Mizuchi. Recommended level: 70+ with Anathema (Game8); Black Frost himself is level 70 (Samurai Gamers). No guide gives a Hard mode level. He repels Fire, absorbs Ice and resists Physical; use Force and Electricity (Neoseeker). Reward: Satan Magatama (Deadly Fury, a build target).",
 			"requires": ["story-amala-network-revisited"]
 		},
 

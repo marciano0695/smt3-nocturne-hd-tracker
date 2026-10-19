@@ -1006,7 +1006,7 @@ describe('syncAnchors order and rewards', () => {
     expect(result.reordered).toBe(true);
     expect(get(result.state.story, 'side-black-frost')).toMatchObject({
       magatama: 'Satan',
-      recommendedLevel: 40,
+      recommendedLevel: get(seedStory(), 'side-black-frost').recommendedLevel,
     });
     expect(get(result.state.story, 'side-mara').recommendedLevel).toBe(45);
     expect(ids(result.state.story.milestones).slice(0, 2)).toEqual([
