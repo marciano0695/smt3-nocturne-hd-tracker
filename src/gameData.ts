@@ -1,3 +1,4 @@
+import evolutionsJson from '../data/evolutions.json';
 import levelingJson from '../data/leveling.json';
 import magatamaJson from '../data/magatama.json';
 import newGameJson from '../data/new-game.json';
@@ -6,6 +7,7 @@ import statGuidesJson from '../data/stat-guides.json';
 import storyJson from '../data/story.json';
 import {
   createGameData,
+  parseEvolutionsFile,
   parseLevelingFile,
   parseMagatamaFile,
   parseRules,
@@ -16,12 +18,16 @@ const magatama = parseMagatamaFile(magatamaJson);
 const rules = parseRules(rulesJson);
 const guides = parseStatGuidesFile(statGuidesJson);
 const leveling = parseLevelingFile(levelingJson);
+const evolutions = parseEvolutionsFile(evolutionsJson);
 
 /** Recommended stat curves from data/stat-guides.json. */
 export const statGuides = guides.value;
 
 /** Where to grind EXP, from data/leveling.json. */
 export const levelingGuide = leveling.value;
+
+/** Demons that evolve, from data/evolutions.json. */
+export const evolutionGuide = evolutions.value;
 
 /** Game data loaded from data/*.json, validated and indexed. */
 export const gameData = createGameData(magatama.value, rules.value);
@@ -32,6 +38,7 @@ export const dataErrors: string[] = [
   ...rules.errors.map((e) => `data/rules.json: ${e}`),
   ...guides.errors.map((e) => `data/stat-guides.json: ${e}`),
   ...leveling.errors.map((e) => `data/leveling.json: ${e}`),
+  ...evolutions.errors.map((e) => `data/evolutions.json: ${e}`),
 ];
 
 // Seeds are validated by the persistence module when a new game is created.

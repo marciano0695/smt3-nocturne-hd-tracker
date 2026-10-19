@@ -5,6 +5,7 @@ import { ToastHost } from './components/ui';
 import { BuildPage } from './pages/BuildPage';
 import { DashboardPage } from './pages/DashboardPage';
 import { DemiFiendPage } from './pages/DemiFiendPage';
+import { DemonsPage } from './pages/DemonsPage';
 import { SettingsPage } from './pages/SettingsPage';
 import { StoryPage } from './pages/StoryPage';
 import { ROUTES, useRoute, type Route } from './state/router';
@@ -16,6 +17,7 @@ const ICONS: Record<Route, IconName> = {
   demifiend: 'fiend',
   build: 'build',
   story: 'story',
+  demons: 'demons',
   settings: 'settings',
 };
 
@@ -24,6 +26,7 @@ const PAGES: Record<Route, () => React.JSX.Element> = {
   demifiend: DemiFiendPage,
   build: BuildPage,
   story: StoryPage,
+  demons: DemonsPage,
   settings: SettingsPage,
 };
 
@@ -37,20 +40,12 @@ function NavLink({ route, href, label }: (typeof ROUTES)[number]) {
   );
 }
 
-// On phones Level up sits in the middle of the tab bar and Settings moves to the top bar.
+// On phones Level up and Settings live in the top bar, leaving the tab bar to the pages.
 function Nav() {
   return (
     <nav className="nav" aria-label="Main">
       <ul>
-        {ROUTES.slice(0, 2).map((r) => (
-          <li key={r.route}>
-            <NavLink {...r} />
-          </li>
-        ))}
-        <li className="nav-levelup">
-          <LevelUpActions layout="tab" />
-        </li>
-        {ROUTES.slice(2).map((r) => (
+        {ROUTES.map((r) => (
           <li key={r.route} className={r.route === 'settings' ? 'nav-settings' : undefined}>
             <NavLink {...r} />
           </li>
@@ -114,6 +109,9 @@ function Shell() {
           <Icon name="orb" size={22} />
           <span>Nocturne Tracker</span>
         </a>
+        <div className="topbar-levelup">
+          <LevelUpActions layout="tab" />
+        </div>
         <a
           className="topbar-settings icon-btn"
           href="#/settings"

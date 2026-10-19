@@ -8,9 +8,9 @@
   top: 0;
   z-index: var(--z-nav);
   display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-columns: minmax(0, 1fr) auto auto;
   align-items: center;
-  gap: 0 var(--space-3);
+  gap: 0 var(--space-2);
   padding: var(--space-2) var(--space-2) var(--space-2) var(--space-4);
   padding-top: max(var(--space-2), env(safe-area-inset-top));
   background: var(--bg);
@@ -20,6 +20,7 @@
 .wordmark {
   display: inline-flex;
   align-items: center;
+  min-width: 0;
   gap: var(--space-2);
   color: var(--ink);
   text-decoration: none;
@@ -30,7 +31,15 @@
 }
 
 .wordmark svg {
+  flex: none;
   color: var(--primary);
+}
+
+/* On the narrowest phones the name gives way to Level up and Settings. */
+.wordmark span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .topbar-settings[aria-current='page'] {
@@ -119,22 +128,20 @@
   color: var(--primary);
 }
 
-/* The most frequent action mid-session, always one tap away. */
+/* The most frequent action mid-session, always one tap away in the top bar. */
 .tab-levelup {
-  display: flex;
-  flex-direction: column;
+  display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 1px;
-  width: min(4.25rem, 100%);
-  height: 3.125rem;
-  margin: 0 auto;
+  gap: var(--space-1);
+  min-height: var(--tap);
+  padding: 0 var(--space-3) 0 var(--space-2);
   border: 0;
   border-radius: var(--radius-lg);
   background: var(--primary-fill);
   color: var(--on-primary);
-  font-size: var(--text-xs);
+  font-size: var(--text-sm);
   font-weight: 700;
+  white-space: nowrap;
   transition: background-color var(--dur-fast) var(--ease-out);
 }
 
@@ -176,7 +183,7 @@
   }
 
   .topbar .topbar-settings,
-  .nav-levelup {
+  .topbar-levelup {
     display: none;
   }
 
@@ -2513,5 +2520,130 @@ ul.form-warning {
 .leveling-source {
   display: block;
   margin-top: var(--space-4);
+  overflow-wrap: anywhere;
+}
+
+/* Demons: the player's party and the evolution list. */
+.demons,
+.evolution-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.demons {
+  margin-bottom: var(--space-4);
+}
+
+.demon,
+.evolution {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-bottom: 1px solid var(--line);
+  font-size: var(--text-sm);
+}
+
+.evolution:last-child {
+  border-bottom: 0;
+}
+
+.demon-head,
+.evolution-head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-2);
+}
+
+.demon-name {
+  margin-right: var(--space-1);
+  font-size: var(--text-md);
+  font-weight: 650;
+}
+
+.demon-into,
+.evolution-note {
+  margin: 0;
+  max-width: 75ch;
+}
+
+.demon-condition {
+  color: var(--muted);
+}
+
+.demon-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-4);
+  margin-top: var(--space-1);
+}
+
+.demon-level {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  color: var(--muted);
+}
+
+.demon-level input {
+  width: 4.5rem;
+}
+
+.demon-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-left: auto;
+}
+
+.demon.is-ready .demon-name {
+  color: var(--primary);
+}
+
+.demon-add {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: var(--space-3);
+}
+
+.demon-add .field:first-child {
+  flex: 1 1 12rem;
+}
+
+.demon-add .field:nth-child(2) {
+  flex: 0 0 5.5rem;
+}
+
+.evolutions > .field {
+  margin-bottom: var(--space-3);
+}
+
+.evolution-names {
+  flex: 1 1 16rem;
+  font-size: var(--text-md);
+  font-weight: 600;
+}
+
+.evolution-names .muted {
+  font-size: var(--text-xs);
+  font-weight: 500;
+}
+
+.evolution-arrow {
+  margin: 0 var(--space-2);
+  color: var(--primary);
+}
+
+.evolution-sources {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: var(--space-3) 0 0;
+  padding: 0;
+  list-style: none;
   overflow-wrap: anywhere;
 }

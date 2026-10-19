@@ -1,6 +1,9 @@
 import {
   STATS,
   type Assumption,
+  type Evolution,
+  type EvolutionGroup,
+  type EvolutionGuide,
   type GameData,
   type GrindSpot,
   type GrindTier,
@@ -232,6 +235,55 @@ export function parseLevelingFile(json: unknown): Parsed<LevelingGuide> {
 
   const source = typeof root.source === 'string' ? root.source : '';
   return { value: { source, tiers, spots, tips }, errors };
+}
+
+const EVOLUTION_GROUPS: EvolutionGroup[] = ['regular', 'neutral', 'story'];
+
+const text = (v: unknown): string => (typeof v === 'string' ? v.trim() : '');
+
+/** Validates data/evolutions.json; rows missing a name, race or level are skipped. */
+export function parseEvolutionsFile(json: unknown): Parsed<EvolutionGuide> {
+  const errors: string[] = [];
+  const root = isRecord(json) ? json : {};
+  let demiFiendLevelGap = 0;
+  if (Number.isInteger(root.demiFiendLevelGap) && (root.demiFiendLevelGap as number) >= 0)
+    demiFiendLevelGap = root.demiFiendLevelGap as number;
+  else errors.push('"demiFiendLevelGap" must be a whole number of 0 or more; 0 was used');
+
+  const evolutions: Evolution[] = [];
+  const list = Array.isArray(root.evolutions) ? root.evolutions : [];
+  if (list.length === 0) errors.push('evolutions.json has no "evolutions" list');
+  for (const [i, e] of list.entries()) {
+    if (!isRecord(e) || !text(e.from) || !text(e.to)) {
+      errors.push(`evolutions[${i}] needs "from" and "to" demon names`);
+      continue;
+    }
+    if (!Number.isInteger(e.toLevel) || (e.toLevel as number) < 1) {
+      errors.push(`evolutions[${i}] (${text(e.from)}): "toLevel" must be a whole number`);
+      continue;
+    }
+    if (!EVOLUTION_GROUPS.includes(e.group as EvolutionGroup)) {
+      errors.push(`evolutions[${i}] (${text(e.from)}): "group" must be regular, neutral or story`);
+      continue;
+    }
+    if (evolutions.some((x) => x.from.toLowerCase() === text(e.from).toLowerCase())) {
+      errors.push(`evolutions[${i}]: ${text(e.from)} is listed twice; the first one is used`);
+      continue;
+    }
+    const evolution: Evolution = {
+      from: text(e.from),
+      fromRace: text(e.fromRace),
+      to: text(e.to),
+      toRace: text(e.toRace),
+      toLevel: e.toLevel as number,
+      group: e.group as EvolutionGroup,
+      verified: e.verified === true,
+    };
+    if (text(e.condition)) evolution.condition = text(e.condition);
+    if (text(e.notes)) evolution.notes = text(e.notes);
+    evolutions.push(evolution);
+  }
+  return { value: { sources: strings(root.sources), demiFiendLevelGap, evolutions }, errors };
 }
 
 /** Validates data/rules.json, falling back to defaults for missing or bad fields. */

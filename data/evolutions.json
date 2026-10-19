@@ -1,0 +1,34 @@
+{
+	"_note": "Demons that evolve, from Samurai Gamers' evolution guide, checked against Game8's. 'toLevel' is the evolved demon's base level (Samurai Gamers' 'Req. Lv.' column). A demon evolves on a level-up once it has learned all the skills of its current form, and only when the Demi-fiend's level is at least toLevel minus 'demiFiendLevelGap'. 'group' follows Samurai Gamers' tables: regular, neutral or story. Story demons only evolve after you beat the evolved form in battle ('condition'). Every row is unverified until confirmed in the app, or set \"verified\": true here.",
+	"sources": [
+		"Samurai Gamers, \"Demon Evolution Guide\" (HD Remaster): https://samurai-gamers.com/shin-megami-tensei-iii-nocturne-hd-remaster/demon-evolution-guide/",
+		"Game8, \"Evolution Guide: List of Demons that can Evolve\" (HD Remaster): https://game8.co/games/Shin-Megami-Tensei-III-Nocturne/archives/332383"
+	],
+	"demiFiendLevelGap": 4,
+	"evolutions": [
+		{ "from": "Inugami", "fromRace": "Beast", "to": "Makami", "toRace": "Avatar", "toLevel": 22, "group": "regular", "verified": false },
+		{ "from": "Nozuchi", "fromRace": "Snake", "to": "Gui Xian", "toRace": "Dragon", "toLevel": 24, "group": "regular", "verified": false, "notes": "Game8 calls the evolved form Xuanwu." },
+		{ "from": "Nekomata", "fromRace": "Beast", "to": "Senri", "toRace": "Holy", "toLevel": 28, "group": "regular", "verified": false },
+		{ "from": "Karasu", "fromRace": "Yoma", "to": "Kurama", "toRace": "Genma", "toLevel": 38, "group": "regular", "verified": false, "notes": "Game8 calls it Karasu Tengu and its table doesn't show this evolution clearly." },
+		{ "from": "Momunofu", "fromRace": "Brute", "to": "Arahabaki", "toRace": "Vile", "toLevel": 30, "group": "regular", "verified": false },
+		{ "from": "Dis", "fromRace": "Yoma", "to": "Valkyrie", "toRace": "Wargod", "toLevel": 33, "group": "regular", "verified": false },
+		{ "from": "Mizuchi", "fromRace": "Snake", "to": "Long", "toRace": "Dragon", "toLevel": 44, "group": "regular", "verified": false, "notes": "Game8 calls the evolved form Qing Long." },
+		{ "from": "Onkot", "fromRace": "Yoma", "to": "Hanuman", "toRace": "Genma", "toLevel": 46, "group": "regular", "verified": false, "notes": "Game8 spells it Ongkhot." },
+		{ "from": "Hanuman", "fromRace": "Genma", "to": "Wu Kong", "toRace": "Fury", "toLevel": 54, "group": "regular", "verified": false, "notes": "Game8's table doesn't show this evolution clearly." },
+		{ "from": "Setanta", "fromRace": "Fairy", "to": "Cu Chulainn", "toRace": "Genma", "toLevel": 52, "group": "regular", "verified": false },
+		{ "from": "Sati", "fromRace": "Megami", "to": "Parvati", "toRace": "Lady", "toLevel": 57, "group": "regular", "verified": false },
+		{ "from": "Purski", "fromRace": "Yoma", "to": "Ganesha", "toRace": "Wargod", "toLevel": 58, "group": "regular", "verified": false, "notes": "Game8 spells it Pulukishi." },
+		{ "from": "Sparna", "fromRace": "Beast", "to": "Garuda", "toRace": "Avian", "toLevel": 63, "group": "regular", "verified": false, "notes": "Game8 spells it Suparna." },
+		{ "from": "Pixie", "fromRace": "Fairy", "to": "High Pixie", "toRace": "Fairy", "toLevel": 10, "group": "neutral", "verified": false, "notes": "Game8 also says beating an enemy High Pixie can trigger it." },
+		{ "from": "High Pixie", "fromRace": "Fairy", "to": "Queen Mab", "toRace": "Night", "toLevel": 56, "group": "neutral", "verified": false },
+		{ "from": "Lilim", "fromRace": "Night", "to": "Lilith", "toRace": "Night", "toLevel": 80, "group": "neutral", "verified": false },
+		{ "from": "Koppa", "fromRace": "Yoma", "to": "Karasu", "toRace": "Yoma", "toLevel": 28, "group": "neutral", "verified": false, "notes": "Game8 calls them Koppa Tengu and Karasu Tengu." },
+		{ "from": "Naga", "fromRace": "Snake", "to": "Raja Naga", "toRace": "Snake", "toLevel": 37, "group": "neutral", "verified": false, "notes": "Game8 calls the evolved form Naga Raja." },
+		{ "from": "Jinn", "fromRace": "Yoma", "to": "Efreet", "toRace": "Yoma", "toLevel": 52, "group": "neutral", "verified": false },
+		{ "from": "Gogmagog", "fromRace": "Jirae", "to": "Albion", "toRace": "Entity", "toLevel": 64, "group": "story", "condition": "Beat Albion in battle first.", "verified": false },
+		{ "from": "Throne", "fromRace": "Divine", "to": "Uriel", "toRace": "Seraph", "toLevel": 73, "group": "story", "condition": "Beat Uriel in battle first.", "verified": false },
+		{ "from": "Scathach", "fromRace": "Megami", "to": "Skadi", "toRace": "Lady", "toLevel": 74, "group": "story", "condition": "Beat Skadi in battle first.", "verified": false },
+		{ "from": "Abaddon", "fromRace": "Tyrant", "to": "Aciel", "toRace": "Tyrant", "toLevel": 77, "group": "story", "condition": "Beat Aciel in battle first.", "verified": false },
+		{ "from": "Beelzebub (Human)", "fromRace": "Tyrant", "to": "Beelzebub (Fly)", "toRace": "Tyrant", "toLevel": 95, "group": "story", "condition": "Beat Beelzebub (Fly) in battle first.", "verified": false }
+	]
+}

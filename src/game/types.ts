@@ -132,6 +132,39 @@ export interface LevelingGuide {
 
 export type SpotStatus = 'locked' | 'under' | 'ready' | 'past';
 
+export type EvolutionGroup = 'regular' | 'neutral' | 'story';
+
+/** One demon evolution, from data/evolutions.json. */
+export interface Evolution {
+  from: string;
+  fromRace: string;
+  to: string;
+  toRace: string;
+  /** The evolved demon's base level. */
+  toLevel: number;
+  group: EvolutionGroup;
+  /** Extra requirement in plain words, e.g. a battle to win first. */
+  condition?: string;
+  verified: boolean;
+  notes?: string;
+}
+
+export interface EvolutionGuide {
+  sources: string[];
+  /** The Demi-fiend needs at least `toLevel - demiFiendLevelGap`. */
+  demiFiendLevelGap: number;
+  evolutions: Evolution[];
+}
+
+/** A demon in the player's party, tracked for evolution. */
+export interface OwnedDemon {
+  id: string;
+  name: string;
+  level: number;
+  /** Learned every skill of its current form, which evolution needs. */
+  skillsDone: boolean;
+}
+
 export type ObtainStatus = 'owned' | 'now' | 'later';
 
 export interface ObtainRow {
@@ -208,6 +241,8 @@ export interface PlayerState {
   labyrinthComplete: boolean;
   /** Missing means Normal, so older saves and fixtures stay valid. */
   difficulty?: Difficulty;
+  /** Missing means none tracked, so older saves stay valid. */
+  demons?: OwnedDemon[];
   build: Build;
   story: StoryState;
 }

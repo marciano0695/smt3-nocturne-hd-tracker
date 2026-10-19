@@ -1,12 +1,13 @@
 import { useSyncExternalStore } from 'react';
 
-export type Route = 'dashboard' | 'demifiend' | 'build' | 'story' | 'settings';
+export type Route = 'dashboard' | 'demifiend' | 'build' | 'story' | 'demons' | 'settings';
 
 export const ROUTES: { route: Route; label: string; href: string }[] = [
   { route: 'dashboard', label: 'Next', href: '#/' },
   { route: 'demifiend', label: 'Demi-fiend', href: '#/demifiend' },
   { route: 'build', label: 'Build', href: '#/build' },
   { route: 'story', label: 'Story', href: '#/story' },
+  { route: 'demons', label: 'Demons', href: '#/demons' },
   { route: 'settings', label: 'Settings', href: '#/settings' },
 ];
 

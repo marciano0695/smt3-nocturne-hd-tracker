@@ -67,6 +67,7 @@ function richSave(): SaveFile {
   };
   state.equipped = 'Kamudo';
   state.difficulty = 'hard';
+  state.demons = [{ id: 'demon-1', name: 'Pixie', level: 7, skillsDone: true }];
   state.build.wishlist = ['Media'];
   state.build.statGuide = {
     id: 'g',
@@ -108,6 +109,30 @@ describe('export and import', () => {
     const odd = normalizeState({ ...fixtureJson, difficulty: 'lunatic' }, gameData, seedStory());
     expect(odd.value.difficulty).toBeUndefined();
     expect(odd.errors).toContain('difficulty "lunatic" is unknown and was set to Normal');
+  });
+
+  it('keeps a save without demons valid and drops malformed demons', () => {
+    expect(normalizeState(fixtureJson, gameData, seedStory()).value.demons).toBeUndefined();
+    const odd = normalizeState(
+      {
+        ...fixtureJson,
+        demons: [
+          { id: 'a', name: 'Pixie', level: 120, skillsDone: true },
+          { id: 'a', name: 'Inugami', level: 12 },
+          { level: 3 },
+        ],
+      },
+      gameData,
+      seedStory(),
+    );
+    expect(odd.value.demons).toEqual([
+      { id: 'a', name: 'Pixie', level: 99, skillsDone: true },
+      { id: 'a-2', name: 'Inugami', level: 12, skillsDone: false },
+    ]);
+    expect(odd.errors).toEqual([
+      'Pixie: level 120 was changed to 99',
+      'a demon with no name was dropped',
+    ]);
   });
 
   it('rejects invalid JSON, non-objects and newer formats', () => {

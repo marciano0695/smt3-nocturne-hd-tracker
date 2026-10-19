@@ -21,6 +21,16 @@
 			"id": "new-game-start",
 			"text": "A new game starts with 2 in every stat and Marogareh as the only Magatama.",
 			"verified": true
+		},
+		{
+			"id": "evolution-level-gap",
+			"text": "A demon can only evolve when the Demi-fiend's level is at least the evolved form's level minus 4 (Samurai Gamers). Game8 says it depends on the demon's own level.",
+			"verified": true
+		},
+		{
+			"id": "evolution-skills-first",
+			"text": "A demon only evolves after it has learned every skill of its current form.",
+			"verified": true
 		}
 	]
 }

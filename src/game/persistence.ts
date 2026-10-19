@@ -7,6 +7,7 @@ import {
   type MagatamaProgress,
   type Milestone,
   type MilestoneKind,
+  type OwnedDemon,
   type PlayerState,
   type Rules,
   type SaveFile,
@@ -192,6 +193,33 @@ function parseBuild(raw: unknown, warnings: string[]): Build {
   return build;
 }
 
+function parseDemons(raw: unknown, maxLevel: number, warnings: string[]): OwnedDemon[] {
+  if (!Array.isArray(raw)) {
+    warnings.push('demons was not a list and was emptied');
+    return [];
+  }
+  const demons: OwnedDemon[] = [];
+  for (const d of raw) {
+    const name = isRecord(d) && typeof d.name === 'string' ? d.name.trim() : '';
+    if (!isRecord(d) || name === '') {
+      warnings.push('a demon with no name was dropped');
+      continue;
+    }
+    let id = typeof d.id === 'string' && d.id !== '' ? d.id : `demon-${demons.length + 1}`;
+    // Ids key the list in the UI, so a clash would make two demons edit as one.
+    while (demons.some((x) => x.id === id)) id = `${id}-${demons.length + 1}`;
+    let level = 1;
+    if (typeof d.level === 'number' && Number.isFinite(d.level)) {
+      level = Math.min(maxLevel, Math.max(1, Math.round(d.level)));
+      if (level !== d.level) warnings.push(`${name}: level ${d.level} was changed to ${level}`);
+    } else {
+      warnings.push(`${name}: level was missing and set to 1`);
+    }
+    demons.push({ id, name, level, skillsDone: d.skillsDone === true });
+  }
+  return demons;
+}
+
 /** Coerces anything into a valid PlayerState, reporting each fix. Never throws. */
 export function normalizeState(
   raw: unknown,
@@ -278,6 +306,7 @@ export function normalizeState(
   if (r.difficulty === 'hard') value.difficulty = 'hard';
   else if (r.difficulty !== undefined && r.difficulty !== 'normal')
     warnings.push(`difficulty ${JSON.stringify(r.difficulty)} is unknown and was set to Normal`);
+  if (r.demons !== undefined) value.demons = parseDemons(r.demons, rules.maxLevel, warnings);
   return { value, errors: warnings };
 }
 
