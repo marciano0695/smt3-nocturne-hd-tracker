@@ -1,3 +1,4 @@
+import { addMagatama } from './obtain';
 import type {
   Difficulty,
   Milestone,
@@ -246,8 +247,7 @@ export function setMilestoneDone(state: PlayerState, id: string, done: boolean):
   );
   // Getting the reward means owning the Magatama; unchecking keeps it, so no progress is lost.
   const reward = milestone.magatama;
-  if (!done || !reward || Object.hasOwn(next.magatama, reward)) return next;
-  return { ...next, magatama: { ...next.magatama, [reward]: { nextIndex: 0, history: [] } } };
+  return done && reward ? addMagatama(next, reward) : next;
 }
 
 /** Reward Magatama of a milestone that the player doesn't own yet, if any. */

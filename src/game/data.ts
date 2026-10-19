@@ -100,6 +100,14 @@ export function parseMagatamaFile(json: unknown): Parsed<MagatamaData[]> {
     }
     if (typeof raw.obtain === 'string' && raw.obtain.trim() !== '')
       magatama.obtain = raw.obtain.trim();
+    const links = raw.milestone;
+    if (typeof links === 'string' && links !== '') magatama.milestones = [links];
+    else if (Array.isArray(links) && links.every((id) => typeof id === 'string' && id !== '')) {
+      if (links.length > 0) magatama.milestones = links as string[];
+    } else if (links !== undefined && links !== null) {
+      errors.push(`${name}: milestone must be a story milestone id or a list of ids`);
+    }
+    if (raw.needsOthers === true) magatama.needsOthers = true;
     value.push(magatama);
   });
   return { value, errors };

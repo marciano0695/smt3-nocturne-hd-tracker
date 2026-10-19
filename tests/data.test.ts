@@ -55,6 +55,35 @@ describe('data files', () => {
     expect(rewards.filter((name) => !data.magatamaByName.has(name))).toEqual([]);
   });
 
+  it('links every Magatama but the starting one to real story milestones', () => {
+    const ids = new Set(storyJson.milestones.map((m) => m.id));
+    const unlinked = data.magatama.filter((m) => !m.milestones).map((m) => m.name);
+    expect(unlinked).toEqual(['Marogareh']);
+    const broken = data.magatama.flatMap((m) => (m.milestones ?? []).filter((id) => !ids.has(id)));
+    expect(broken).toEqual([]);
+    expect(data.magatamaByName.get('Ankh')?.milestones).toEqual([
+      'story-shibuya-amala-network',
+      'story-ginza',
+    ]);
+  });
+
+  it('links each story.json reward back to the milestone that gives it', () => {
+    const mismatched = storyJson.milestones.flatMap((m) =>
+      'magatama' in m &&
+      typeof m.magatama === 'string' &&
+      !data.magatamaByName.get(m.magatama)?.milestones?.includes(m.id)
+        ? [m.magatama]
+        : [],
+    );
+    expect(mismatched).toEqual([]);
+  });
+
+  it('reports a bad Magatama milestone link instead of throwing', () => {
+    const bad = parseMagatamaFile({ magatama: [{ name: 'X', milestone: 3, skills: [] }] });
+    expect(bad.value).toEqual([{ name: 'X', skills: [] }]);
+    expect(bad.errors).toHaveLength(1);
+  });
+
   it('reads the leveling guide, opening each spot with a real story milestone', () => {
     const leveling = parseLevelingFile(levelingJson);
     expect(leveling.errors).toEqual([]);

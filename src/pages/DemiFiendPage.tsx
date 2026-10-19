@@ -1,5 +1,7 @@
 import {
   MagatamaList,
+  ObtainList,
+  ownedCount,
   ScheduleTable,
   ScheduleTimeline,
   SkillSlots,
@@ -41,6 +43,7 @@ function CurrentState() {
 }
 
 export function DemiFiendPage() {
+  const { state, data } = useStore();
   return (
     <div className="page">
       <PageHeader title="Demi-fiend">
@@ -65,6 +68,12 @@ export function DemiFiendPage() {
       </Section>
       <Section title="Stat plan">
         <StatPlan />
+      </Section>
+      <Section
+        title="Where to get Magatama"
+        description={`In the order the story reaches them · ${ownedCount(state, data)}.`}
+      >
+        <ObtainList />
       </Section>
       <Section
         title="Owned Magatama"

@@ -21,6 +21,10 @@ export interface MagatamaData {
   alignment?: Alignment;
   /** How to get it, from the player's notes. */
   obtain?: string;
+  /** story.json milestones where it can be got; the first sets its place in the obtain order. */
+  milestones?: string[];
+  /** Only obtainable once every other Magatama is owned. */
+  needsOthers?: boolean;
   /** Already in learning order. */
   skills: SkillData[];
 }
@@ -127,6 +131,19 @@ export interface LevelingGuide {
 }
 
 export type SpotStatus = 'locked' | 'under' | 'ready' | 'past';
+
+export type ObtainStatus = 'owned' | 'now' | 'later';
+
+export interface ObtainRow {
+  name: string;
+  /** A reward is added when its milestone is done; a "get" is bought or picked up by hand. */
+  how: 'start' | 'reward' | 'get';
+  /** The player's copies, so their reordering and progress count. */
+  milestones: Milestone[];
+  status: ObtainStatus;
+  /** Build target skills this Magatama teaches. */
+  targets: string[];
+}
 
 export interface Build {
   /** Final 8 skills. */

@@ -29,6 +29,7 @@ import {
   updateMilestone,
   upsertSaveSlot,
 } from '../game/story';
+import { getsAt } from '../game/obtain';
 import type { Milestone, MilestoneKind, SaveSlot } from '../game/types';
 import { rememberOpen } from '../state/disclosure';
 import { useStore } from '../state/store';
@@ -167,7 +168,8 @@ function Labyrinth() {
 }
 
 function MilestoneRow({ m, index, count }: { m: Milestone; index: number; count: number }) {
-  const { state, update } = useStore();
+  const { state, data, update } = useStore();
+  const gets = getsAt(data, m);
   const [editing, setEditing] = useState(false);
   const [removing, setRemoving] = useState(false);
   const [showNotes, setShowNotes] = useState(false);
@@ -206,6 +208,11 @@ function MilestoneRow({ m, index, count }: { m: Milestone; index: number; count:
             <Tag tone={state.magatama[m.magatama] ? 'success' : 'neutral'}>
               Reward: {m.magatama}
               {state.magatama[m.magatama] ? ' (owned)' : ''}
+            </Tag>
+          )}
+          {gets.length > 0 && (
+            <Tag tone={gets.every((name) => state.magatama[name]) ? 'success' : 'neutral'}>
+              Get: {gets.join(', ')}
             </Tag>
           )}
           {!m.done && (m.available ? <Tag tone="accent">available</Tag> : null)}

@@ -8,6 +8,7 @@ import {
   unlockLabel,
 } from '../game/data';
 import { defaultSkillChoice, offerAt, suggestLevelUp, validateLevelUp } from '../game/levelUp';
+import { addMagatama, obtainOrder } from '../game/obtain';
 import { replacedAt } from '../game/scheduler';
 import { suggestStat } from '../game/statPlan';
 import {
@@ -604,6 +605,73 @@ export function StatPlan() {
   );
 }
 
+const OBTAIN_STATUS = {
+  owned: { label: 'owned', tone: 'success' },
+  now: { label: 'get now', tone: 'accent' },
+  later: { label: 'later', tone: 'neutral' },
+} as const;
+
+/** How many Magatama the player owns, out of every one in magatama.json. */
+export function ownedCount(state: PlayerState, data: GameData): string {
+  const owned = data.magatama.filter((m) => Object.hasOwn(state.magatama, m.name)).length;
+  return `${owned}/${data.magatama.length} owned`;
+}
+
+/** Every Magatama in the order the story reaches it, with where and how to get it. */
+export function ObtainList() {
+  const { state, data, update } = useStore();
+  const rows = obtainOrder(state, data);
+  return (
+    <ol className="obtain-list">
+      {rows.map((row, i) => {
+        const status = OBTAIN_STATUS[row.status];
+        const where = row.milestones.map((m) => m.title).join(' or ');
+        return (
+          <li key={row.name} className={`obtain obtain-${row.status}`}>
+            <span className="obtain-num num">{i + 1}</span>
+            <div className="obtain-main">
+              <span className="magatama-name">
+                {row.name}
+                <AlignmentTag name={row.name} />
+                <Tag tone={status.tone}>{status.label}</Tag>
+                {row.targets.map((skill) => (
+                  <Tag key={skill} tone="primary">
+                    target: {skill}
+                  </Tag>
+                ))}
+              </span>
+              {row.how === 'start' ? (
+                <span className="obtain-where muted">From the start</span>
+              ) : (
+                where && (
+                  <span className="obtain-where muted">
+                    {row.how === 'reward' ? 'Reward from' : 'During'} {where}
+                  </span>
+                )
+              )}
+              <MagatamaSource name={row.name} />
+            </div>
+            {row.status === 'now' && (
+              <Button
+                small
+                icon="plus"
+                onClick={() =>
+                  update(
+                    (s) => addMagatama(s, row.name),
+                    `${row.name} added. The schedule now includes it.`,
+                  )
+                }
+              >
+                Got it
+              </Button>
+            )}
+          </li>
+        );
+      })}
+    </ol>
+  );
+}
+
 /** Owned Magatama with their next skill; progress is editable for missed logs. */
 export function MagatamaList() {
   const { state, data, update } = useStore();
@@ -695,10 +763,7 @@ function AddMagatamaDialog({ open, onClose }: { open: boolean; onClose: () => vo
   const add = () => {
     if (!chosen) return;
     update(
-      (s) => ({
-        ...s,
-        magatama: { ...s.magatama, [chosen.name]: { nextIndex: index, history: [] } },
-      }),
+      (s) => addMagatama(s, chosen.name, index),
       `${chosen.name} added. The schedule now includes it.`,
     );
     setName('');
